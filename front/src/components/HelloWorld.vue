@@ -1,5 +1,9 @@
 <template>
-  <div class="hello"><h1>eFileDex</h1></div>
+  <div class="hello">
+    <div class="logo">
+      <img src="@/assets/efilelogo.png" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -11,20 +15,16 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.hello {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.logo {
+  height: auto;
+  width: 100%;
 }
 </style>
+
