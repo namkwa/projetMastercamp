@@ -1,12 +1,12 @@
 <template>
-  <div class="login">
-    <h1>le login</h1>
+  <div class="hello">
+    <h1>eFileDex</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Login",
+  name: "HelloWorld",
   props: {
     msg: String,
   },
