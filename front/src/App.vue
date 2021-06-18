@@ -12,6 +12,12 @@
 ./components/HelloWorld.vue
 <style>
 #app {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,6 +26,7 @@
 }
 
 #nav {
+  display: ;
   padding: 30px;
 }
 

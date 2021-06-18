@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-    <h1>eFileDex</h1>
+    <div class="logo">
+      <img src="@/assets/efilelogo.png" />
+    </div>
   </div>
 </template>
 
@@ -15,4 +17,14 @@ export default {
 
 
 <style scoped>
+.hello {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  height: auto;
+  width: 100%;
+}
 </style>
+
