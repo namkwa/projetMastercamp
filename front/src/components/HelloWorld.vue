@@ -20,21 +20,34 @@
         <div class="home_wrapper_partager_title">Partager</div>
       </div>
     </div>
-    <div class="home_content1"></div>
-  </div>
-
-  <!-- <div class="content1_search">
-      <div class="content1_search_logo">
-        <img src="image/search.png" />
+    <div class="home_content1">
+      <div class="home_content1_search">
+        <div class="home_content1_search_logo">
+          <img id="searchLogo" src="image/search.png" />
+        </div>
+        <div class="home_content1_echange_title">Recherchez des projets</div>
       </div>
-      <div class="content1_echange_title">cznvzrpiniv</div>
+      <div class="home_content1_echange">
+        <div class="home_content1_echange_logo">
+          <img id="echangeLogo" src="image/echange.png" />
+        </div>
+        <div class="home_content1_echange_title">
+          Entrez en contact avec<br />
+          les créateur d’anciens projets
+        </div>
+      </div>
     </div>
-    <div class="content1_echange">
-      <div class="content1_echange_logo">
-        <img src="image/echange.png" />
+    <div class="home_content2">
+      <div class="home_content2_share">
+        <div class="home_content2_share_logo">
+          <img id="searchLogo" src="image/share.png" />
+        </div>
+        <div class="home_content2_share_title">
+          Partagez vos propres projets
+        </div>
       </div>
-      <div class="content1_echange_title">ùkzrnùvna</div>
-    </div> -->
+    </div>
+  </div>
 </template>
 
 
@@ -55,9 +68,10 @@ export default {
 
 <style scoped>
 .home {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;  */
+  /* flex-direction: column-reverse; */
   width: 100vw;
   height: 80vh;
 }
@@ -132,10 +146,27 @@ export default {
 }
 
 .home_content1 {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  background: red;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 40vh;
+}
+
+/* .home_content1_echange {
+  display: flex;
+} */
+
+/* .home_content1_echange_logo {
+} */
+
+#searchLogo {
+  height: 120px;
+  width: 120px;
+}
+
+#echangeLogo {
+  height: 120px;
+  width: 120px;
 }
 </style>
 

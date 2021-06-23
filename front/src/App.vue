@@ -26,6 +26,8 @@
 *,
 html {
   margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #app {
@@ -53,6 +55,7 @@ html {
   align-items: flex-start;
   flex-direction: column;
   width: 100vw;
+  height: 100vh;
 }
 
 .header_wrapper :nth-child(1) {
