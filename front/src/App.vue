@@ -13,7 +13,7 @@
       </div>
       <div class="header_wrapper_logo">
         <div class="header_wrapper_logo_efile">
-          <img src="@/assets/name_white.png" />
+          <img src="image/name_white.png" />
         </div>
       </div>
       <router-view />
@@ -43,13 +43,13 @@ html {
 }
 
 .header {
+  display: flex;
   height: 100vh;
-  /* width: 100vw; */
 }
 
 .header_wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
   width: 100vw;
