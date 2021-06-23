@@ -13,7 +13,20 @@
       </div>
       <div class="header_wrapper_logo">
         <div class="header_wrapper_logo_efile">
-          <img src="image/name_white.png" />
+          <img id="nameLogo" src="image/name_white.png" />
+        </div>
+        <div class="header_wrapper_logo_right">
+          <div class="header_wrapper_logo_right_star">
+            <img id="nameLogo" src="image/star.png" />
+          </div>
+          <div class="header_wrapper_logo_right_bell">
+            <img id="nameLogo" src="image/bell.png" />
+          </div>
+        </div>
+        <div class="header_wrapper_logo_left">
+          <div class="header_wrapper_logo_left_user">
+            <img id="nameLogo" src="image/user.png" />
+          </div>
         </div>
       </div>
       <router-view />
@@ -64,17 +77,52 @@ html {
 
 .header_wrapper_logo {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-direction: row-reverse;
   width: 100vw;
   background: #0e3b5a;
+}
+
+.header_wrapper_logo :nth-child(1) {
+  order: 1;
 }
 
 .header_wrapper_logo_efile {
   display: flex;
   justify-content: center;
   height: 87px;
-  width: 100vw;
+  width: 25vw;
+}
+
+.header_wrapper_logo_right {
+  display: flex;
+}
+
+.header_wrapper_logo_right_star {
+  display: flex;
+  height: 45px;
+  width: 45px;
+  margin: 25px;
+}
+
+.header_wrapper_logo_right_bell {
+  display: flex;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin-top: 25px;
+}
+
+.header_wrapper_logo_left {
+  display: flex;
+}
+
+.header_wrapper_logo_left_user {
+  display: flex;
+  justify-content: center;
+  height: 45px;
+  width: 45px;
 }
 
 .header_wrapper_nav {
