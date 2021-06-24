@@ -3,31 +3,33 @@
     <div class="header_wrapper">
       <div class="header_wrapper_nav">
         <div class="header_wrapper_nav_route">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/login">Login</router-link> |
-          <router-link to="/create">Create Account</router-link> |
-          <router-link to="/error">Error</router-link> |
-          <router-link to="/document">Document</router-link> |
-          <router-link to="/user">User</router-link>
+          <router-link to="/">home</router-link> |
+          <router-link to="/login">login</router-link> |
+          <router-link to="/create">create account</router-link> |
+          <router-link to="/error">error</router-link> |
+          <router-link to="/document">document</router-link> |
+          <router-link to="/user">profil</router-link> |
         </div>
       </div>
       <div class="header_wrapper_logo">
-        <div class="header_wrapper_logo_efile">
-          <img id="nameLogo" src="image/efiledex_white_sized.png" />
-        </div>
+        <router-link to="/">
+          <div class="header_wrapper_logo_efile">
+            <img id="nameLogo" src="image/efiledex_white_sized.png" /></div
+        ></router-link>
         <div class="header_wrapper_logo_right">
           <div class="header_wrapper_logo_right_star">
-            <img src="image/star.png" />
+            <img id="star" src="image/star.png" />
           </div>
           <div class="header_wrapper_logo_right_bell">
-            <img src="image/bell.png" />
+            <img id="bell" src="image/bell.png" />
           </div>
         </div>
-        <div class="header_wrapper_logo_left">
-          <div class="header_wrapper_logo_left_user">
-            <img src="image/user.png" />
-          </div>
-        </div>
+        <router-link to="/login">
+          <div class="header_wrapper_logo_left">
+            <div class="header_wrapper_logo_left_user">
+              <img src="image/user.png" />
+            </div></div
+        ></router-link>
       </div>
       <router-view />
     </div>
@@ -102,8 +104,8 @@ html {
 
 .header_wrapper_logo_right_star {
   display: flex;
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
   padding-top: 0px;
   padding-right: 25px;
 }
@@ -111,8 +113,8 @@ html {
 .header_wrapper_logo_right_bell {
   display: flex;
   justify-content: center;
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   padding-top: 0px;
   padding-right: 25px;
 }
