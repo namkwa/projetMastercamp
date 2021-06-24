@@ -13,19 +13,19 @@
       </div>
       <div class="header_wrapper_logo">
         <div class="header_wrapper_logo_efile">
-          <img id="nameLogo" src="image/name_white.png" />
+          <img id="nameLogo" src="image/efiledex_white_sized.png" />
         </div>
         <div class="header_wrapper_logo_right">
           <div class="header_wrapper_logo_right_star">
-            <img id="nameLogo" src="image/star.png" />
+            <img src="image/star.png" />
           </div>
           <div class="header_wrapper_logo_right_bell">
-            <img id="nameLogo" src="image/bell.png" />
+            <img src="image/bell.png" />
           </div>
         </div>
         <div class="header_wrapper_logo_left">
           <div class="header_wrapper_logo_left_user">
-            <img id="nameLogo" src="image/user.png" />
+            <img src="image/user.png" />
           </div>
         </div>
       </div>
@@ -77,22 +77,23 @@ html {
 
 .header_wrapper_logo {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row-reverse;
   width: 100vw;
   background: #0e3b5a;
 }
 
-.header_wrapper_logo :nth-child(1) {
+.header_wrapper_logo :nth-child(3) {
   order: 1;
 }
 
 .header_wrapper_logo_efile {
   display: flex;
   justify-content: center;
-  height: 87px;
+  height: 60px;
   width: 25vw;
+  padding-left: 70px;
 }
 
 .header_wrapper_logo_right {
@@ -103,7 +104,8 @@ html {
   display: flex;
   height: 45px;
   width: 45px;
-  margin: 25px;
+  padding-top: 0px;
+  padding-right: 25px;
 }
 
 .header_wrapper_logo_right_bell {
@@ -111,11 +113,13 @@ html {
   justify-content: center;
   width: 45px;
   height: 45px;
-  margin-top: 25px;
+  padding-top: 0px;
+  padding-right: 25px;
 }
 
 .header_wrapper_logo_left {
   display: flex;
+  padding: 25px;
 }
 
 .header_wrapper_logo_left_user {
