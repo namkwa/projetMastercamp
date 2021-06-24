@@ -13,7 +13,20 @@
       </div>
       <div class="header_wrapper_logo">
         <div class="header_wrapper_logo_efile">
-          <img src="@/assets/name_white.png" />
+          <img id="nameLogo" src="image/efiledex_white_sized.png" />
+        </div>
+        <div class="header_wrapper_logo_right">
+          <div class="header_wrapper_logo_right_star">
+            <img src="image/star.png" />
+          </div>
+          <div class="header_wrapper_logo_right_bell">
+            <img src="image/bell.png" />
+          </div>
+        </div>
+        <div class="header_wrapper_logo_left">
+          <div class="header_wrapper_logo_left_user">
+            <img src="image/user.png" />
+          </div>
         </div>
       </div>
       <router-view />
@@ -26,6 +39,8 @@
 *,
 html {
   margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #app {
@@ -43,16 +58,17 @@ html {
 }
 
 .header {
+  display: flex;
   height: 100vh;
-  /* width: 100vw; */
 }
 
 .header_wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
   width: 100vw;
+  height: 100vh;
 }
 
 .header_wrapper :nth-child(1) {
@@ -61,17 +77,56 @@ html {
 
 .header_wrapper_logo {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: row-reverse;
   width: 100vw;
   background: #0e3b5a;
+}
+
+.header_wrapper_logo :nth-child(3) {
+  order: 1;
 }
 
 .header_wrapper_logo_efile {
   display: flex;
   justify-content: center;
-  height: 87px;
-  width: 100vw;
+  height: 60px;
+  width: 25vw;
+  padding-left: 70px;
+}
+
+.header_wrapper_logo_right {
+  display: flex;
+}
+
+.header_wrapper_logo_right_star {
+  display: flex;
+  height: 45px;
+  width: 45px;
+  padding-top: 0px;
+  padding-right: 25px;
+}
+
+.header_wrapper_logo_right_bell {
+  display: flex;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  padding-top: 0px;
+  padding-right: 25px;
+}
+
+.header_wrapper_logo_left {
+  display: flex;
+  padding: 25px;
+}
+
+.header_wrapper_logo_left_user {
+  display: flex;
+  justify-content: center;
+  height: 45px;
+  width: 45px;
 }
 
 .header_wrapper_nav {
