@@ -1,24 +1,25 @@
-'use strict';
+"use strict";
 
-import pg from 'pg';
-import knex from 'knex';
+import knex from "knex";
+import bookshelf from "bookshelf";
 
 const opts = {
-  host: '127.0.0.1',
-  user: 'user',
-  password: 'password',
-  database: 'cars',
-  charset: 'utf8',
+  host: "127.0.0.1",
+  user: "postgres",
+  password: "hugo1507",
+  database: "projetMasterCamp",
+  charset: "utf8",
   debug: true,
-  pool: {
-    min: 0,
-    max: 7
-  }
+  port: 5432,
 };
 const db = knex({
-  client: 'pg',
-  connection: opts
+  client: "pg",
+  connection: opts,
 });
-const bookshelf = require('bookshelf')(db);
 
-export { bookshelf };
+const Bookshelf = bookshelf(db);
+
+Bookshelf.plugin("registry"); // Resolve circular dependencies with relations
+Bookshelf.plugin("visibility");
+
+export { Bookshelf, db };
