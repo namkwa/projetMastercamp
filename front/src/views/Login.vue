@@ -11,7 +11,7 @@
         </div>
         <div class="login_wrapper_button">
           <button class="button_connexion" type="button">Connexion</button>
-          <router-link to="/create"
+          <router-link to="/create" id="create_route"
             ><p>Par encore de compte ? C'est par ici !</p></router-link
           >
         </div>
@@ -89,6 +89,10 @@ p {
   color: #0e3b5a;
 }
 
+p:hover {
+  color: #49ade0;
+}
+
 .button_connexion {
   background-color: #0e3b5a;
   border: none;
@@ -102,6 +106,10 @@ p {
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+}
+
+#create_route {
+  text-decoration: none;
 }
 </style>
 
