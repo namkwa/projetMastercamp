@@ -1,5 +1,5 @@
 <template>
   <div class="login">
-    <h1>Connexion</h1>
+    <h1>Connexion Test</h1>
   </div>
 </template>
