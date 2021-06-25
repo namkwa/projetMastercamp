@@ -1,108 +1,68 @@
 "use strict";
 
-import { Users } from "../models.js";
+import { Student } from "../models.js";
 import bcrypt from "bcrypt";
 import Bookshelf from "bookshelf";
+import jwt from "jsonwebtoken";
 
 const base = (req, res) => {
   res.json("base api");
 };
 
 const test = async (req, res) => {
-  const { name } = req.body;
-  const user = await new Users({ name }).save();
+  const { nom, prenom, email, password, login } = req.body;
+  const user = await new Student({
+    nom,
+    prenom,
+    email,
+    password,
+    login,
+  }).save();
   res.json(user);
 };
 
 const test2 = async (req, res) => {
-  const users = await Users.count();
-  res.json(users);
+  const student = await Student.count();
+  res.json(student);
 };
+
 //Requête de connexion
-const connection = (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+const connection = async (req, res) => {
+  const request1 = await Student.where("email", req.body.email).fetch();
+  var passwordIsValid = await bcrypt.compare(
+    req.body.password,
+    request1.attributes.password
+  );
+  if (!passwordIsValid)
+    return res.status(401).send({ auth: false, token: null });
 
-  login(email, password);
+  var token = jwt.sign(
+    { id: request1.attributes.idetudiant },
+    "trestressecret",
+    {
+      expiresIn: 86400, // expires in 24 hours
+    }
+  );
 
-  async function login(email, password) {
-    exist(email).then((result) => {
-      if (result.rowCount != 0) {
-        checkPassword(password, result.rows[0].password).then((validHash) => {
-          if (validHash === true) {
-            //-----------------------------------------A CHANGER-----------------------------------------------------
-            if (req.session.id_user === result.rows[0].id_user) {
-              //-----------------------------------------A CHANGER-----------------------------------------------------
-              res.status(401).json({ message: "Vous êtes déjà connecté" });
-            } else {
-              req.session.current_user = {
-                //-----------------------------------------A CHANGER-----------------------------------------------------
-                id_user: result.rows[0].id_user,
-                username: result.rows[0].username,
-                //-----------------------------------------A CHANGER-----------------------------------------------------
-                email: result.rows[0].email,
-              };
-              res.status(200).json(req.session.current_user);
-            }
-          } else {
-            res.json({ message: "Mot de passe incorrect" });
-          }
-        });
-      } else {
-        res.json({ message: "L'email n'existe pas" });
-      }
-    });
-  }
-  //Vérifie si
-  async function exist(email) {
-    var sql = "SELECT * FROM personne WHERE Email=$1";
-    return await client.query({
-      text: sql,
-      values: [email],
-    });
-  }
-
-  async function checkPassword(password, dbhash) {
-    return await bcrypt.compare(password, dbhash);
-  }
+  res.status(200).send({ auth: true, token: token });
 };
 
 //Requête de création de compte
-const createAccount = (req, res) => {
+const createAccount = async (req, res) => {
   const nom = req.body.nom;
   const prenom = req.body.prenom;
   const email = req.body.email;
-  const password = req.body.password;
-
-  exist(email).then((result) => {
-    if (result.rowCount != 0) {
-      res.status(400).json({ message: "Votre email est déjà utilisé" });
-    } else {
-      register(nom, prenom, email, password).then(() => {
-        res.status(200).json({ message: "Votre compte a bien été enregistré" });
-      });
-    }
-  });
-
-  async function exist(email) {
-    var sql = "SELECT Email FROM personne WHERE Email=$1";
-    return await client.query({
-      text: sql,
-      values: [email],
-    });
-  }
-
-  async function register(nom, prenom, email, password) {
-    var hash = await bcrypt.hash(password, 10);
-
-    var sqlInsert =
-      "INSERT INTO personne (Nom, Prenom, Email, Password) VALUES ($1, $2, $3, $4)";
-
-    await client.query({
-      text: sqlInsert,
-      values: [nom, prenom, email, hash],
-    });
-  }
+  const password = await bcrypt.hash(req.body.password, 10);
+  const login = req.body.login;
+  console.log(password);
+  const student = await new Student({
+    nom,
+    prenom,
+    email,
+    password,
+    login,
+  }).save();
+  res.json(student);
 };
 
 export default { base, connection, createAccount, test, test2 };
