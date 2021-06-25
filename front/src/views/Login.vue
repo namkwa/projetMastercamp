@@ -4,7 +4,13 @@
       <div class="login_wrapper_title"><h1>Connexion</h1></div>
       <form id="login" method="get">
         <div class="login_wrapper_email">
-          <input type="email" id="email" placeholder="email@efrei.net" />
+          <input
+            type="email"
+            id="email"
+            placeholder="email@efrei.net"
+            required
+            pattern="[a-z0-9._%+-]+@efrei+.[a-z]{2,4}$"
+          />
         </div>
         <div class="login_wrapper_password">
           <input type="password" id="pwd" placeholder="Mot de passe" />
