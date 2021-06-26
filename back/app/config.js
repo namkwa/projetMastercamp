@@ -7,7 +7,7 @@ const opts = {
   host: "127.0.0.1",
   user: "postgres",
   password: "hugo1507",
-  database: "efile",
+  database: "projetMasterCamp",
   charset: "utf8",
   debug: true,
   port: 5432,
