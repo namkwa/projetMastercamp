@@ -28,16 +28,16 @@ const test2 = async (req, res) => {
 
 //Requête de connexion
 const connection = async (req, res) => {
-  const request1 = await Student.where("email", req.body.email).fetch();
-  var passwordIsValid = await bcrypt.compare(
+  const request = await Student.where("email", req.body.email).fetch();
+  const passwordIsValid = await bcrypt.compare(
     req.body.password,
-    request1.attributes.password
+    request.attributes.password
   );
   if (!passwordIsValid)
     return res.status(401).send({ auth: false, token: null });
 
-  var token = jwt.sign(
-    { id: request1.attributes.idetudiant },
+  const token = jwt.sign(
+    { id: request.attributes.idetudiant },
     "trestressecret",
     {
       expiresIn: 86400, // expires in 24 hours
@@ -54,7 +54,6 @@ const createAccount = async (req, res) => {
   const email = req.body.email;
   const password = await bcrypt.hash(req.body.password, 10);
   const login = req.body.login;
-  console.log(password);
   const student = await new Student({
     nom,
     prenom,
