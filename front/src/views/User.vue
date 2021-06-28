@@ -43,13 +43,40 @@
     </div>
     <div class="user_content2">
       <div class="user_content2_info">
-        <div class="user_content2_info_title">information</div>
-        <div class="user_content2_info_text">ah oui c'est cool blablabla</div>
+        <div class="user_content2_info_text">
+          Description la personne et de ses projets :<br />
+          -aussi de langages qu’iels utilisent<br />
+          -ou de ce que cette personne fait si plus à l’efrei
+        </div>
+        <div class="user_content2_info_title">Informations</div>
       </div>
     </div>
     <div class="user_content3">
       <div class="user_content3_projet">
         <div class="user_content3_projet_title">Mes projets</div>
+        <div class="user_content3_projet_list">
+          <div class="user_content3_projet_list_1">
+            <div class="user_content3_projet_list_1_image">
+              <img src="image/LOGO3.png" />
+            </div>
+            <div class="user_content3_projet_list_1_name">eFileDex</div>
+            <div class="user_content3_projet_list_1_techno">HTML/CSS</div>
+          </div>
+          <div class="user_content3_projet_list_2">
+            <div class="user_content3_projet_list_2_image">
+              <img src="https://img.icons8.com/color/452/c-programming.png" />
+            </div>
+            <div class="user_content3_projet_list_2_name">Projet pendu</div>
+            <div class="user_content3_projet_list_2_techno">C</div>
+          </div>
+          <div class="user_content3_projet_list_3">
+            <div class="user_content3_projet_list_3_image">
+              <img src="image/vuelogo.png" />
+            </div>
+            <div class="user_content3_projet_list_3_name">Efrei Web Game</div>
+            <div class="user_content3_projet_list_3_techno">Vue.js</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -170,6 +197,8 @@
 
 h2 {
   font-weight: bold;
+  font-weight: 900;
+  font-size: 1.5em;
 }
 
 h3 {
@@ -195,8 +224,9 @@ h3 {
 }
 
 .user_content1_right_title {
-  font-size: 1.5em;
   font-weight: bold;
+  font-weight: 900;
+  font-size: 1.5em;
   padding-bottom: 3%;
   line-height: 35px;
 }
@@ -212,10 +242,80 @@ h3 {
   align-items: center;
   height: 15vh;
   width: 100vw;
+  border-bottom: 2px solid #c7c7c7;
+}
+
+.user_content2_info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.user_content2_info_title {
+  font-weight: bold;
+  font-weight: 900;
+  font-size: 1.5em;
+  padding-right: 8%;
+}
+
+.user_content2_info_text {
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #757575;
 }
 
 .user_content3 {
   height: 40vh;
   width: 100vw;
+}
+
+/* .user_content3_projet {
+} */
+
+.user_content3_projet_title {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-weight: bold;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.user_content3_projet_list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  /* flex-direction: column; */
+}
+
+.user_content3_projet_list_1_image {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+}
+
+.user_content3_projet_list_2_image {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+}
+
+.user_content3_projet_list_3_image {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+}
+
+.user_content3_projet_list_3_name {
+  color: red;
 }
 </style>
