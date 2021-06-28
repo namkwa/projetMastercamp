@@ -115,7 +115,7 @@ label.container {
 
 .create_wrapper_year_sub{
   width: 60vw;
-  padding-left: 17%;
+  padding-left: 16%;
 }
 
 .create_wrapper_button {
