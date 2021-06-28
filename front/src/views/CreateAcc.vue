@@ -6,7 +6,7 @@
       </div>
       <form id="create" method="get">
         <div class="create_wrapper_email">
-          <input type="email" id="email" placeholder="email@efrei.net" />
+          <input type="email" id="email" required pattern="[a-z0-9._%+-]+@efrei+\.[a-z]{2,4}$" placeholder="email@efrei.net" />
         </div>
         <div class="create_wrapper_name">
           <input type="password" id="pwd" placeholder="Mot de passe" />
