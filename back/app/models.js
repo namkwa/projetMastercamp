@@ -1,7 +1,7 @@
 import { Bookshelf } from "./config.js";
 
-const Users = Bookshelf.model("Users", {
-  tableName: "users",
+const Student = Bookshelf.model("Student", {
+  tableName: "etudiant",
 });
 
-export { Users };
+export { Student };

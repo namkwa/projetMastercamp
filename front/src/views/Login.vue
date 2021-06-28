@@ -4,14 +4,20 @@
       <div class="login_wrapper_title"><h1>Connexion</h1></div>
       <form id="login" method="get">
         <div class="login_wrapper_email">
-          <input type="email" id="email" placeholder="email@efrei.net" />
+          <input
+            type="email"
+            id="email"
+            placeholder="email@efrei.net"
+            required
+            pattern="[a-z0-9._%+-]+@efrei+.[a-z]{2,4}$"
+          />
         </div>
         <div class="login_wrapper_password">
           <input type="password" id="pwd" placeholder="Mot de passe" />
         </div>
         <div class="login_wrapper_button">
           <button class="button_connexion" type="button">Connexion</button>
-          <router-link to="/create"
+          <router-link to="/create" id="create_route"
             ><p>Par encore de compte ? C'est par ici !</p></router-link
           >
         </div>
@@ -89,6 +95,10 @@ p {
   color: #0e3b5a;
 }
 
+p:hover {
+  color: #49ade0;
+}
+
 .button_connexion {
   background-color: #0e3b5a;
   border: none;
@@ -102,6 +112,10 @@ p {
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+}
+
+#create_route {
+  text-decoration: none;
 }
 </style>
 
