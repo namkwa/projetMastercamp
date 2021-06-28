@@ -138,6 +138,6 @@ label.container {
 }
 
 ::placeholder {
-  font-size: 1.33em;
+  font-size: 1.32em;
 }
 </style>
