@@ -36,7 +36,7 @@
         <div class="user_content1_left_desc">
           <h2>Adrien Calmesnil</h2>
           <br />
-          <h3>Promotion {{ yearPromotion }}</h3>
+          <h3>Promotion 2023{{ yearPromotion }}</h3>
         </div>
       </div>
       <div class="user_content1_separation"></div>
@@ -73,7 +73,7 @@
             <div class="user_content3_projet_list_3_image">
               <img src="image/vuelogo.png" />
             </div>
-            <div class="user_content3_projet_list_3_name">Efrei Web Game</div>
+            <div class="user_content3_projet_list_3_name">Efrei Game</div>
             <div class="user_content3_projet_list_3_techno">Vue.js</div>
           </div>
         </div>
@@ -301,6 +301,12 @@ h3 {
   width: 100px;
 }
 
+.user_content3_projet_list_1_name {
+  color: #0e3b5a;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 .user_content3_projet_list_2_image {
   display: flex;
   justify-content: center;
@@ -308,14 +314,29 @@ h3 {
   width: 100px;
 }
 
+.user_content3_projet_list_2_name {
+  color: #0e3b5a;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/* .user_content3_projet_list_3 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
+
 .user_content3_projet_list_3_image {
   display: flex;
   justify-content: center;
   height: 100px;
   width: 100px;
+  margin: 0;
 }
 
 .user_content3_projet_list_3_name {
-  color: red;
+  color: #0e3b5a;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 </style>
