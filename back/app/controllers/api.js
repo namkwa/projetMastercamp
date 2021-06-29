@@ -22,7 +22,7 @@ const test = async (req, res) => {
 };
 
 const test2 = async (req, res) => {
-  const student = await Student.count();
+  const student = await Student.fetchAll();
   res.json(student);
 };
 
@@ -33,8 +33,7 @@ const connection = async (req, res) => {
     req.body.password,
     request.attributes.password
   );
-  if (!passwordIsValid)
-    return res.status(401).send({ auth: false, token: null });
+  if (!passwordIsValid) return res.status(401).send(null);
 
   const token = jwt.sign(
     { id: request.attributes.idetudiant },
@@ -44,7 +43,7 @@ const connection = async (req, res) => {
     }
   );
 
-  res.status(200).send({ auth: true, token: token });
+  res.status(200).send(token);
 };
 
 //Requête de création de compte
