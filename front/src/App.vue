@@ -37,10 +37,6 @@
 </template>
 ./components/HelloWorld.vue
 
-<script>
-</script>
-
-
 <style>
 *,
 html {

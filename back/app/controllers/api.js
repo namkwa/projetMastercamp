@@ -63,4 +63,12 @@ const createAccount = async (req, res) => {
   res.json(student);
 };
 
-export default { base, connection, createAccount, test, test2 };
+const upload = async (req, res) => {
+  const token = req.headers.authorization;
+  console.log(req);
+  const verif = await jwt.verify(token, "trestressecret");
+  console.log(verif);
+  res.status(200).send(verif);
+};
+
+export default { base, connection, createAccount, test, test2, upload };
