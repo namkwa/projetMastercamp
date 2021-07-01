@@ -66,6 +66,9 @@ const createAccount = async (req, res) => {
 const upload = async (req, res) => {
   const token = req.headers.authorization;
   console.log(req);
+  const file = req.files.file;
+
+  file.mv("./app/uploads/pierre.png");
   const verif = await jwt.verify(token, "trestressecret");
   console.log(verif);
   res.status(200).send(verif);

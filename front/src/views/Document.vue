@@ -1,7 +1,14 @@
 <template>
   <div class="document">
     <h1>Le document page</h1>
-    <input type="file" id="input" @change="handleFiles" multiple required />
+    <input
+      type="file"
+      enctype="multipart/form-data"
+      id="input"
+      @change="handleFiles"
+      multiple
+      required
+    />
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
       >This is an embedded</iframe
