@@ -20,4 +20,4 @@ const downloadDocument = Bookshelf.model("downloadDocument", {
   tableName: "telecharger",
 });
 
-export { Student };
+export { Student, Documents, Comments, addDocument, downloadDocument };
