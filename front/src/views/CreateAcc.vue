@@ -6,33 +6,77 @@
       </div>
       <form id="create" method="get">
         <div class="create_wrapper_email">
-          <input type="email" id="email" required pattern="[a-z0-9._%+-]+@efrei+\.[a-z]{2,4}$" placeholder="email@efrei.net" />
+          <input
+            type="email"
+            id="email"
+            required
+            pattern="[a-z0-9._%+-]+@efrei+\.[a-z]{2,4}$"
+            placeholder="email@efrei.net"
+            v-model="email"
+          />
         </div>
         <div class="create_wrapper_name">
           <input type="password" id="pwd" placeholder="Mot de passe" />
-          <input type="text" id="name" placeholder="Nom" />
+          <input type="text" id="name" placeholder="Nom" v-model="nom" />
         </div>
         <div class="create_wrapper_fname">
-          <input type="password" id="confirm" placeholder="Validation du mot de passe" />
-          <input type="text" id="fname" placeholder="Prénom" />
+          <input
+            type="password"
+            id="confirm"
+            placeholder="Validation du mot de passe"
+            v-model="password"
+          />
+          <input type="text" id="fname" placeholder="Prénom" v-model="prenom" />
         </div>
         <div class="create_wrapper_checkbox">
           <label class="container">Déjà diplomé.e ?</label>
-          <input type="checkbox" name="Diplome" id="graduated">
+          <input type="checkbox" name="Diplome" id="graduated" />
         </div>
         <div class="create_wrapper_year">
-          
           <div class="create_wrapper_year_sub">
             <a href="/">
-          <button class="button_creation" type="button">C'est parti !</button>
-            </a></div>
-          
+              <button
+                class="button_creation"
+                type="button"
+                @click="handleClick"
+              >
+                C'est parti !
+              </button>
+            </a>
+          </div>
+
           <input type="text" id="year" placeholder="Promotion" />
         </div>
       </form>
     </div>
   </div>
 </template>
+
+<script>
+import { register } from "../api/register.js";
+export default {
+  data() {
+    return {
+      nom: "",
+      prenom: "",
+      email: "",
+      password: "",
+      login: "oui",
+    };
+  },
+  methods: {
+    async handleClick() {
+      await register({
+        nom: this.nom,
+        prenom: this.prenom,
+        email: this.email,
+        password: this.password,
+        login: this.login,
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
 .create {
@@ -78,13 +122,12 @@ input {
   display: flex;
   justify-content: space-around;
   padding-bottom: 30px;
-
 }
 
 .create_wrapper_fname {
   display: flex;
   justify-content: space-around;
-  padding-bottom: 30px; 
+  padding-bottom: 30px;
 }
 
 .create_wrapper_checkbox {
@@ -110,10 +153,9 @@ label.container {
   justify-content: flex-start;
   margin-left: 10%;
   padding-bottom: 30px;
-
 }
 
-.create_wrapper_year_sub{
+.create_wrapper_year_sub {
   width: 60vw;
   padding-left: 16%;
 }

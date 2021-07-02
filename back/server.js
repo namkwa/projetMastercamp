@@ -5,7 +5,6 @@ import morgan from "morgan";
 import { routes as routes } from "./app/routes.js";
 import cors from "cors";
 import fileUpload from "express-fileupload";
-import bodyParser from "body-parser";
 
 const app = express();
 
