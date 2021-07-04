@@ -6,33 +6,76 @@
       </div>
       <form id="create" method="get">
         <div class="create_wrapper_email">
-          <input type="email" id="email" required pattern="[a-z0-9._%+-]+@efrei+\.[a-z]{2,4}$" placeholder="email@efrei.net" />
+          <input type="email" id="email" required pattern="[a-z0-9._%+-]+@efrei+\.[a-z]{2,4}$" placeholder="email@efrei.net" 
+              v-model="email"/>
         </div>
         <div class="create_wrapper_name">
-          <input type="password" id="pwd" placeholder="Mot de passe" />
-          <input type="text" id="name" placeholder="Nom" />
+          <input type="password" id="pwd" placeholder="Mot de passe" v-model="password"/>
+          <input type="text" id="name" placeholder="Nom" v-model="nom"/>
         </div>
         <div class="create_wrapper_fname">
-          <input type="password" id="confirm" placeholder="Validation du mot de passe" />
-          <input type="text" id="fname" placeholder="Prénom" />
+          <input type="password" id="confirm" placeholder="Validation du mot de passe" v-model="confirm"/>
+          <input type="text" id="fname" placeholder="Prénom" v-model="prenom"/>
         </div>
         <div class="create_wrapper_checkbox">
           <label class="container">Déjà diplomé.e ?</label>
-          <input type="checkbox" name="Diplome" id="graduated">
+          <input type="checkbox" name="Diplome" id="graduated" v-model="diplome">
         </div>
         <div class="create_wrapper_year">
           
           <div class="create_wrapper_year_sub">
-            <a href="/">
-          <button class="button_creation" type="button">C'est parti !</button>
-            </a></div>
+            
+          <button class="button_creation" type="button" @click="Account">C'est parti !</button>
+            </div>
           
-          <input type="text" id="year" placeholder="Promotion" />
+          <input type="text" id="year" placeholder="Promotion" v-model="promotion"/>
         </div>
       </form>
     </div>
   </div>
 </template>
+
+<script>
+import { createAccount } from "../api/createAccount.js";
+import router from '../router/index.js'
+export default {
+  data() {
+    return {
+      email: "",
+      nom: "",
+      prenom: "",
+      diplome: "",
+      promotion: "",
+      password: "",
+      confirm: ""
+    };
+  },
+  methods: {
+    goToHome() {
+      router.push("/").catch(() => {})
+    },
+    async Account() {
+      if (this.password == this.confirm) {
+        const res = await createAccount({ nom: this.nom, prenom: this.prenom, email: this.email, password: this.password, login: "a supprimer"});
+
+        if (res.data.message == "ok") {
+          console.log("Le compte a été créé avec succès!");
+          this.goToHome();
+        }
+        else if (res.data.message == "Error") {
+          alert("Cette adresse est déjà utilisée");
+        }
+        else {
+          alert("Erreur inconnue détéctée");
+        }
+      }
+      else {
+        alert("Les mots de passe ne correspondent pas.\n Veuillez réessayer.");
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 .create {
