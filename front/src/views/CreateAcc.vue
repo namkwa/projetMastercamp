@@ -22,7 +22,6 @@
           <input type="checkbox" name="Diplome" id="graduated" v-model="diplome">
         </div>
         <div class="create_wrapper_year">
-          
           <div class="create_wrapper_year_sub">
             
           <button class="button_creation" type="button" @click="Account">C'est parti !</button>
@@ -121,13 +120,12 @@ input {
   display: flex;
   justify-content: space-around;
   padding-bottom: 30px;
-
 }
 
 .create_wrapper_fname {
   display: flex;
   justify-content: space-around;
-  padding-bottom: 30px; 
+  padding-bottom: 30px;
 }
 
 .create_wrapper_checkbox {
@@ -153,10 +151,9 @@ label.container {
   justify-content: flex-start;
   margin-left: 10%;
   padding-bottom: 30px;
-
 }
 
-.create_wrapper_year_sub{
+.create_wrapper_year_sub {
   width: 60vw;
   padding-left: 16%;
 }
