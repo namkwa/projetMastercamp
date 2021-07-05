@@ -9,6 +9,7 @@
           <router-link to="/error">error</router-link> |
           <router-link to="/document">document</router-link> |
           <router-link to="/user">profil</router-link> |
+          <router-link to="/research">recherche</router-link> |
         </div>
       </div>
       <div class="header_wrapper_logo">
