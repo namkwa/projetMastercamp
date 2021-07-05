@@ -27,7 +27,7 @@ const test2 = async (req, res) => {
 };
 
 //Requête de connexion
-const connection = async (req, res) => {
+const login = async (req, res) => {
   const request = await Student.where("email", req.body.email).fetch();
   const passwordIsValid = await bcrypt.compare(
     req.body.password,
@@ -47,14 +47,16 @@ const connection = async (req, res) => {
 };
 
 //Requête de création de compte
-const createAccount = async (req, res) => {
+const register = async (req, res) => {
   const nom = req.body.nom;
   const prenom = req.body.prenom;
   const email = req.body.email;
   const password = await bcrypt.hash(req.body.password, 10);
   const login = req.body.login;
 
-  const request = await Student.where("email", req.body.email).fetch({ require: false });//{ require: false } ne sert probablement à rien
+  const request = await Student.where("email", req.body.email).fetch({
+    require: false,
+  }); //{ require: false } ne sert probablement à rien
   if (request == null) {
     const student = await new Student({
       nom,
@@ -64,19 +66,29 @@ const createAccount = async (req, res) => {
       login,
     }).save();
     console.log("terminé !");
-    res.json({ message: "ok"});
-  }
-  else {
-    res.json({ message: "Error"});
+    res.json({ message: "ok" });
+  } else {
+    res.json({ message: "Error" });
   }
 };
 
 const upload = async (req, res) => {
   const token = req.headers.authorization;
   const file = req.files.file;
-  file.mv("./app/uploads/" + file.name);
-  const verif = await jwt.verify(token, "trestressecret");
-  res.status(200).send(verif);
+  const relativeAdress = "./app/uploads/" + file.name;
+  file.mv(relativeAdress);
+
+  const verif = authenticate(token, res);
+  res.status(200);
 };
 
-export default { base, connection, createAccount, test, test2, upload };
+async function authenticate(jwt, res) {
+  try {
+    const verif = await jwt.verify(token, "trestressecret");
+    return verif;
+  } catch (err) {
+    res.status(401);
+  }
+}
+
+export default { base, register, test, test2, upload, login };

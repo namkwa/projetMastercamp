@@ -9,6 +9,8 @@
       multiple
       required
     />
+    <input type="text" id="title" v-model="title" />
+    <input type="text" id="description" v-model="desciption" />
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
       >This is an embedded</iframe
@@ -23,6 +25,8 @@ export default {
   data() {
     return {
       SelectedFile: null,
+      title: "",
+      description: "",
     };
   },
   methods: {
@@ -40,7 +44,7 @@ export default {
       reader.readAsDataURL(selected_file);
     },
     handleClick() {
-      upload(this.SelectedFile);
+      upload({ file: this.SelectedFile, title: this.title });
     },
   },
 };
