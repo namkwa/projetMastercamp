@@ -1,6 +1,6 @@
 "use strict";
 
-import { Student } from "../models.js";
+import { Documents, Student } from "../models.js";
 import bcrypt from "bcrypt";
 import Bookshelf from "bookshelf";
 import jwt from "jsonwebtoken";
@@ -75,10 +75,19 @@ const register = async (req, res) => {
 const upload = async (req, res) => {
   const token = req.headers.authorization;
   const file = req.files.file;
+  const title = req.body.title;
+  const desc = req.body.description;
+  const etat = "fini";
   const relativeAdress = "./app/uploads/" + file.name;
-  file.mv(relativeAdress);
-
   const verif = authenticate(token, res);
+  file.mv(relativeAdress);
+  await new Documents({
+    titredoc: title,
+    adresse: relativeAdress,
+    etatdoc: etat,
+    typedoc: desc,
+  }).save();
+
   res.status(200);
 };
 
