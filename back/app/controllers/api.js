@@ -53,21 +53,29 @@ const createAccount = async (req, res) => {
   const email = req.body.email;
   const password = await bcrypt.hash(req.body.password, 10);
   const login = req.body.login;
-  const student = await new Student({
-    nom,
-    prenom,
-    email,
-    password,
-    login,
-  }).save();
-  res.json(student);
+
+  const request = await Student.where("email", req.body.email).fetch({ require: false });//{ require: false } ne sert probablement à rien
+  if (request == null) {
+    const student = await new Student({
+      nom,
+      prenom,
+      email,
+      password,
+      login,
+    }).save();
+    console.log("terminé !");
+    res.json({ message: "ok"});
+  }
+  else {
+    res.json({ message: "Error"});
+  }
 };
 
 const upload = async (req, res) => {
   const token = req.headers.authorization;
-  console.log(req);
+  const file = req.files.file;
+  file.mv("./app/uploads/" + file.name);
   const verif = await jwt.verify(token, "trestressecret");
-  console.log(verif);
   res.status(200).send(verif);
 };
 
