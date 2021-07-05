@@ -166,5 +166,13 @@ export default {
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 600px) {
+  .home_content1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
 </style>
 
