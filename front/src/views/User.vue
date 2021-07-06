@@ -28,11 +28,11 @@
         </div>
       </div>
       <div class="user_content1_left">
-        <div class="user_content1_left_photo">
+        <!-- <div class="user_content1_left_photo">
           <img
             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-with-glasses.jpg"
           />
-        </div>
+        </div> -->
         <div class="user_content1_left_desc">
           <h2>{{ nom }} {{ prenom }}</h2>
           <br />
@@ -92,8 +92,7 @@ export default {
       yearPromotion: 2023,
     };
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
