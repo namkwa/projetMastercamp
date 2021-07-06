@@ -99,9 +99,9 @@ const search = async (req, res) => {
 };
 
 const me = async (req, res) => {
-  const token = req.body.headers.authorization;
+  const token = req.headers.authorization;
   //console.log(res);
-  const verif = authenticate(token, res)
+  const verif = await authenticate(token, res);
   console.log(verif.id);
   const id = verif.id;
   console.log(verif);
