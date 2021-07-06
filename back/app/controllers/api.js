@@ -79,7 +79,8 @@ const upload = async (req, res) => {
   const desc = req.body.description;
   const etat = "fini";
   const relativeAdress = "./app/uploads/" + file.name;
-  const verif = authenticate(token, res);
+  const verif = await authenticate(token, res);
+  console.log(verif);
   file.mv(relativeAdress);
   await new Documents({
     titredoc: title,
@@ -91,14 +92,21 @@ const upload = async (req, res) => {
   res.status(200);
 };
 
+const search = async (req, res) => {
+  const token = req.headers.authorization;
+  const keyword = req.body.keyword;
+  const verif = authenticate(token, res);
+};
+
 const me = async (req, res) => {
   const token = req.headers.authorization;
   const verif = authenticate(token, res);
   const id = verif.id;
+  console.log(id);
   const student = await new Student.where("id", id).fetch();
 };
 
-async function authenticate(jwt, res) {
+async function authenticate(token, res) {
   try {
     const verif = await jwt.verify(token, "trestressecret");
     return verif;
@@ -107,4 +115,4 @@ async function authenticate(jwt, res) {
   }
 }
 
-export default { base, register, test, test2, upload, login };
+export default { base, register, test, test2, upload, login, authenticate };
