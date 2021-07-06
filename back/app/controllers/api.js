@@ -91,6 +91,13 @@ const upload = async (req, res) => {
   res.status(200);
 };
 
+const me = async (req, res) => {
+  const token = req.headers.authorization;
+  const verif = authenticate(token, res);
+  const id = verif.id;
+  const student = await new Student.where("id", id).fetch();
+};
+
 async function authenticate(jwt, res) {
   try {
     const verif = await jwt.verify(token, "trestressecret");
