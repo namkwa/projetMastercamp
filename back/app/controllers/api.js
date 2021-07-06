@@ -43,7 +43,7 @@ const login = async (req, res) => {
     }
   );
 
-  res.status(200).json({ informations: request.attributes });//.send(token);
+  res.status(200).send(token);
 };
 
 //Requête de création de compte
