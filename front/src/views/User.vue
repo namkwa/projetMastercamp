@@ -209,7 +209,7 @@ export default {
 h2 {
   font-weight: bold;
   font-weight: 900;
-  font-size: 1.5em;
+  font-size: 2.5em;
 }
 
 h3 {
