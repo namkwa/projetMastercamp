@@ -36,6 +36,7 @@
 
 <script>
 import { login } from "../api/login.js";
+import { me } from "../api/me.js";
 export default {
   data() {
     return {
@@ -48,6 +49,15 @@ export default {
       var token = await login({ email: this.email, password: this.password });
       localStorage.setItem("token", token.data);
       console.log(token);
+
+      var infos = await me();
+      console.log(infos);
+
+      const informations = infos.data.informations;
+      //localStorage.setItem("token", token);
+      localStorage.setItem("email", informations.email);
+      localStorage.setItem("nom", informations.nom);
+      localStorage.setItem("prenom", informations.prenom);
     },
   },
 };

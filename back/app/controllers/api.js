@@ -99,20 +99,23 @@ const search = async (req, res) => {
 };
 
 const me = async (req, res) => {
-  const token = req.headers.authorization;
-  const verif = authenticate(token, res);
+  const token = req.body.headers.authorization;
+  //console.log(res);
+  const verif = authenticate(token, res)
+  console.log(verif.id);
   const id = verif.id;
-  console.log(id);
-  const student = await new Student.where("id", id).fetch();
+  console.log(verif);
+  const student = await Student.where("idetudiant", id).fetch();
+  res.status(200).json({ informations: student.attributes });
 };
 
-async function authenticate(token, res) {
+function authenticate(token, res) {
   try {
-    const verif = await jwt.verify(token, "trestressecret");
+    const verif = jwt.verify(token, "trestressecret");
     return verif;
   } catch (err) {
     res.status(401);
   }
 }
 
-export default { base, register, test, test2, upload, login, authenticate };
+export default { base, register, test, test2, upload, me, login, authenticate };
