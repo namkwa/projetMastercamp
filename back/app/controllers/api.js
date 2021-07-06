@@ -109,9 +109,9 @@ const me = async (req, res) => {
   res.status(200).json({ informations: student.attributes });
 };
 
-function authenticate(token, res) {
+async function authenticate(token, res) {
   try {
-    const verif = jwt.verify(token, "trestressecret");
+    const verif = await jwt.verify(token, "trestressecret");
     return verif;
   } catch (err) {
     res.status(401);

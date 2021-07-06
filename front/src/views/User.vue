@@ -83,13 +83,25 @@
 </template>
 
 <script>
+import { me } from "../api/me.js";
 export default {
+  mounted: async function(){
+    var infos = await me();
+    console.log(infos);
+
+    const informations = infos.data.informations;
+    //localStorage.setItem("token", token);
+    this.nom = informations.nom
+    this.prenom = informations.prenom
+    this.email = informations.email
+    this.yearPromotion = 0
+  },
   data() {
     return {
-      nom: localStorage.getItem("nom"),
-      prenom: localStorage.getItem("prenom"),
-      email: localStorage.getItem("email"),
-      yearPromotion: 2023,
+      nom: "",
+      prenom: "",
+      email: "",
+      yearPromotion: 0,
     };
   },
   methods: {},
