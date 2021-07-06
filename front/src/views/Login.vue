@@ -48,8 +48,6 @@ export default {
       var token = await login({ email: this.email, password: this.password });
       localStorage.setItem("token", token.data);
       console.log(token);
-      const token2 = localStorage.getItem("token");
-      console.log(token2);
     },
   },
 };
