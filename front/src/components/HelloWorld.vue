@@ -7,18 +7,21 @@
         </div>
         <div class="home_wrapper_rechercher_title">Rechercher</div>
       </div>
-      <div class="home_wrapper_partager">
-        <div class="home_wrapper_partager_logo">
-          <img src="image/upload.png" />
-        </div>
-        <div class="home_wrapper_partager_title">Partager</div>
-      </div>
-      <div class="home_wrapper_projet">
-        <div class="home_wrapper_projet_logo">
-          <img src="image/myprojects.png" />
-        </div>
-        <div class="home_wrapper_projet_title">Mes Projets</div>
-      </div>
+      <a href="/document" class="path_doc">
+        <div class="home_wrapper_partager">
+          <div class="home_wrapper_partager_logo">
+            <img src="image/upload.png" />
+          </div>
+          <div class="home_wrapper_partager_title">Partager</div>
+        </div> </a
+      ><a href="/user" class="path_user">
+        <div class="home_wrapper_projet">
+          <div class="home_wrapper_projet_logo">
+            <img src="image/myprojects.png" />
+          </div>
+          <div class="home_wrapper_projet_title">Mes Projets</div>
+        </div></a
+      >
     </div>
     <div class="home_content1">
       <div class="home_content1_echange">
@@ -38,14 +41,16 @@
       </div>
     </div>
     <div class="home_content2">
-      <div class="home_content2_share">
-        <div class="home_content2_share_logo">
-          <img id="searchLogo" src="image/share.png" />
+      <a href="/document" class="path_doc">
+        <div class="home_content2_share">
+          <div class="home_content2_share_logo">
+            <img id="searchLogo" src="image/share.png" />
+          </div>
+          <div class="home_content2_share_title">
+            Partagez vos propres projets
+          </div>
         </div>
-        <div class="home_content2_share_title">
-          Partagez vos propres projets
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 </template>
@@ -125,6 +130,14 @@ export default {
   text-transform: uppercase;
 }
 
+.path_doc {
+  text-decoration: none;
+}
+
+.path_user {
+  text-decoration: none;
+}
+
 .home_wrapper_partager {
   display: flex;
   flex-direction: row-reverse;
@@ -167,12 +180,16 @@ export default {
   justify-content: center;
 }
 
-@media screen and (max-width: 600px) {
+.home_content2_share_title {
+  color: #081f2f;
+}
+
+/* @media screen and (max-width: 600px) {
   .home_content1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
-}
+} */
 </style>
 

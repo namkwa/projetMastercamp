@@ -1,6 +1,6 @@
 <template>
   <div class="document">
-    <h1>Le document page</h1>
+    <h1>Envoi de documents</h1>
     <input
       type="file"
       enctype="multipart/form-data"
@@ -9,8 +9,18 @@
       multiple
       required
     />
-    <input type="text" id="title" v-model="title" />
-    <input type="text" id="description" v-model="description" />
+    <input
+      type="text"
+      id="title"
+      v-model="title"
+      placeholder="Titre du document"
+    />
+    <input
+      type="text"
+      id="description"
+      v-model="description"
+      placeholder="Description"
+    />
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
       >This is an embedded</iframe
@@ -53,3 +63,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.document {
+  height: 80vh;
+  width: 100vw;
+}
+
+h1 {
+  color: #757575;
+  margin-top: 150px;
+  margin-bottom: 50px;
+  font-size: 3em;
+}
+</style>
