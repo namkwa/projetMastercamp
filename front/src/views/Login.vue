@@ -46,10 +46,25 @@ export default {
   methods: {
     async handleClick() {
       var token = await login({ email: this.email, password: this.password });
-      localStorage.setItem("token", token.data);
-      console.log(token);
+      const informations = token.data.informations;
+      /*const infos = token.config.data;
+      const emailToken = infos.substr(infos.indexOf('{"email":"')+10, infos.indexOf('","password":')-9)
+      const passwordToken = infos.substr(infos.indexOf(',"password":')+12).replace(/["}]+/g, '');*/
+      localStorage.setItem("token", token);
+      localStorage.setItem("email", informations.email);
+      localStorage.setItem("nom", informations.nom);
+      localStorage.setItem("prenom", informations.prenom);
+      console.log(token.data.informations);
+      //console.log(passwordToken);
       const token2 = localStorage.getItem("token");
       console.log(token2);
+      if (token.status == 200) {
+        alert("Succès !")
+      }
+      else {
+        alert("L'adresse et/ou le mot de passe sont erronés")
+      }
+      //console.log(localStorage.getItem("email"))
     },
   },
 };

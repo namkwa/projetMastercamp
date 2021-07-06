@@ -24,7 +24,7 @@
       <div class="user_content1_right">
         <div class="user_content1_right_title">Contact</div>
         <div class="user_content1_right_mail">
-          adrien.calmesnil@efrei.net<br />adcalmesni@gmail.com
+          {{ email }}<br />adcalmesni@gmail.com
         </div>
       </div>
       <div class="user_content1_left">
@@ -34,9 +34,9 @@
           />
         </div>
         <div class="user_content1_left_desc">
-          <h2>Adrien Calmesnil</h2>
+          <h2>{{ nom }} {{ prenom }}</h2>
           <br />
-          <h3>Promotion 2023{{ yearPromotion }}</h3>
+          <h3>Promotion {{ yearPromotion }}</h3>
         </div>
       </div>
       <div class="user_content1_separation"></div>
@@ -83,6 +83,18 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      nom: localStorage.getItem("nom"),
+      prenom: localStorage.getItem("prenom"),
+      email: localStorage.getItem("email"),
+      yearPromotion: 2023,
+    };
+  },
+  methods: {
+  },
+};
 </script>
 
 
