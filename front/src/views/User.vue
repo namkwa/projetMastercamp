@@ -44,9 +44,9 @@
     <div class="user_content2">
       <div class="user_content2_info">
         <div class="user_content2_info_text">
-          Description la personne et de ses projets :<br />
-          -aussi de langages qu’iels utilisent<br />
-          -ou de ce que cette personne fait si plus à l’efrei
+          Décrire l'utilisateur et ses projets :<br />
+          -langages qu’il utilise (python, java, etc...)<br />
+          -Softskills et logiciels utilisés
         </div>
         <div class="user_content2_info_title">Informations</div>
       </div>
