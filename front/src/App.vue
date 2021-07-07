@@ -6,7 +6,7 @@
           <router-link to="/">home</router-link> |
           <router-link to="/login">login</router-link> |
           <router-link to="/create">create account</router-link> |
-          <router-link to="/error">error</router-link> |
+          <!-- <router-link to="/error">error</router-link> | -->
           <router-link to="/document">document</router-link> |
           <router-link to="/user">profil</router-link> |
         </div>
