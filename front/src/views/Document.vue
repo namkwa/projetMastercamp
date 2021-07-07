@@ -21,6 +21,15 @@
       v-model="description"
       placeholder="Description"
     />
+    <input list="years" name="years" id="browser" />
+    <datalist id="browsers">
+      <option value="Edge"> </option>
+      <option value="Firefox"> </option>
+      <option value="Chrome"> </option>
+      <option value="Opera"> </option>
+      <option value="Safari"> </option>
+    </datalist>
+
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
       >This is an embedded</iframe
