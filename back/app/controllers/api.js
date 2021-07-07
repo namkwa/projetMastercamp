@@ -1,6 +1,6 @@
 "use strict";
 
-import { Documents, Student } from "../models.js";
+import { Documents, Student, Test } from "../models.js";
 import bcrypt from "bcrypt";
 import Bookshelf from "bookshelf";
 import jwt from "jsonwebtoken";
@@ -48,22 +48,22 @@ const login = async (req, res) => {
 
 //Requête de création de compte
 const register = async (req, res) => {
-  const nom = req.body.nom;
-  const prenom = req.body.prenom;
+  const name = req.body.nom;
+  const firstname = req.body.prenom;
   const email = req.body.email;
   const password = await bcrypt.hash(req.body.password, 10);
-  const login = req.body.login;
+  const yearpromotion = req.body.yearPromotion;
 
   const request = await Student.where("email", req.body.email).fetch({
     require: false,
   }); //{ require: false } ne sert probablement à rien
   if (request == null) {
     const student = await new Student({
-      nom,
-      prenom,
+      name,
+      firstname,
       email,
       password,
-      login,
+      yearpromotion
     }).save();
     console.log("terminé !");
     res.json({ message: "ok" });
@@ -105,7 +105,7 @@ const me = async (req, res) => {
   console.log(verif.id);
   const id = verif.id;
   console.log(verif);
-  const student = await Student.where("idetudiant", id).fetch();
+  const student = await Student.where("idstudent", id).fetch();
   res.status(200).json({ informations: student.attributes });
 };
 
@@ -118,4 +118,17 @@ async function authenticate(token, res) {
   }
 }
 
-export default { base, register, test, test2, upload, me, login, authenticate };
+const research = async (req, res) => {
+  //const token = req.headers.authorization;
+  /*console.log("DEBUT");
+  console.log(req.headers.argument);*/
+  const arg = req.headers.argument;
+  //const verif = await authenticate(token, res);
+  //const student = await Student.where("idetudiant", id).fetch();
+  //const student = await Test.where('document_tokens', '@@', "jump").fetch();//"to_tsvector(document_text) @@ to_tsquery(\'jump & quick\')"
+  const student = await Test.query('where', 'document_tokens', '@@', arg).fetchAll();
+  res.status(200).json({ informations: student });
+  //console.log(student)
+};
+
+export default { base, register, test, test2, upload, me, login, authenticate, research };

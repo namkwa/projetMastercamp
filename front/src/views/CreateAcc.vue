@@ -87,7 +87,7 @@ export default {
           prenom: this.prenom,
           email: this.email,
           password: this.password,
-          login: "a supprimer",
+          yearPromotion: this.promotion,
         });
 
         if (res.data.message == "ok") {

@@ -1,23 +1,15 @@
 import { Bookshelf } from "./config.js";
 
 const Student = Bookshelf.model("Student", {
-  tableName: "etudiant",
+  tableName: "student",
 });
 
 const Documents = Bookshelf.model("Documents", {
-  tableName: "document_",
+  tableName: "document",
 });
 
-const Comments = Bookshelf.model("Comments", {
-  tableName: "commentaire",
+const Test = Bookshelf.model("Test", {
+  tableName: "test",
 });
 
-const addDocument = Bookshelf.model("addDocument", {
-  tableName: "ajouter",
-});
-
-const downloadDocument = Bookshelf.model("downloadDocument", {
-  tableName: "telecharger",
-});
-
-export { Student, Documents, Comments, addDocument, downloadDocument };
+export { Student, Documents, Test };

@@ -6,8 +6,8 @@ import bookshelf from "bookshelf";
 const opts = {
   host: "127.0.0.1",
   user: "postgres",
-  password: "hugo1507",
-  database: "projetMasterCamp",
+  password: "UltraVerySecretPassword",
+  database: "postgres",
   charset: "utf8",
   debug: true,
   port: 5432,

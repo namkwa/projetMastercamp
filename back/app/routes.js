@@ -10,6 +10,7 @@ const routes = (app) => {
   app.post("/upload", apiController.upload);
   app.post("/test", apiController.test);
   app.get("/test2", apiController.test2);
+  app.get("/research", apiController.research);
 };
 
 export { routes };
