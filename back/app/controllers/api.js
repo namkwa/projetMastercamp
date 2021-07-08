@@ -36,7 +36,7 @@ const login = async (req, res) => {
   if (!passwordIsValid) return res.status(401).send(null);
 
   const token = jwt.sign(
-    { id: request.attributes.idetudiant },
+    { id: request.attributes.idstudent },
     "trestressecret",
     {
       expiresIn: 86400, // expires in 24 hours
@@ -102,7 +102,7 @@ const me = async (req, res) => {
   const token = req.headers.authorization;
   //console.log(res);
   const verif = await authenticate(token, res);
-  console.log(verif.id);
+  console.log(token);
   const id = verif.id;
   console.log(verif);
   const student = await Student.where("idstudent", id).fetch();
@@ -112,6 +112,7 @@ const me = async (req, res) => {
 async function authenticate(token, res) {
   try {
     const verif = await jwt.verify(token, "trestressecret");
+    console.log(verif)
     return verif;
   } catch (err) {
     res.status(401);
@@ -124,9 +125,9 @@ const research = async (req, res) => {
   console.log(req.headers.argument);*/
   const arg = req.headers.argument;
   //const verif = await authenticate(token, res);
-  //const student = await Student.where("idetudiant", id).fetch();
+  //const student = await Student.where("idstudent", id).fetch();
   //const student = await Test.where('document_tokens', '@@', "jump").fetch();//"to_tsvector(document_text) @@ to_tsquery(\'jump & quick\')"
-  const student = await Test.query('where', 'document_tokens', '@@', arg).fetchAll();
+  const student = await Test.query('where', 'ts_vector', '@@', arg).fetchAll();
   res.status(200).json({ informations: student });
   //console.log(student)
 };
