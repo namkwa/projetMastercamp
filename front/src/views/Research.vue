@@ -29,8 +29,15 @@
 
       <div class="rsch1">
         <form id="demo-2">
-          <input type="search" placeholder="Search">
+          <input id="search" type="search" placeholder="Search">
+          <button type="button" @click="chercher">rechercher</button>
         </form>
+        <li v-if="liste[0] == undefined">Aucun résultat</li>
+        <li v-for="item in liste" :key="item.message">
+          {{ item.title }} {{ item.description }}
+          <button type="button" @click="handleClick">envoyer</button>
+        </li>
+        
       </div>
 
     
@@ -134,12 +141,29 @@ var groups = {
   },
 
 }
-
+import { research } from "../api/research.js";
 export default {
   data() {
     return{
-      groups: groups
+      groups: groups,
+      liste: [],
       }
+  },
+  methods: {
+    async chercher() {
+      //console.log("front")
+      var search = document
+        .getElementById("search")
+        .value.replaceAll(" ", " | ");
+      //console.log(search);
+      var res = await research({
+        string: search,
+      });
+      this.liste = res.data.informations;
+      console.log("LISTE : ")
+      console.log(this.liste);
+      //output.src = event.target.result;
+    },
   }
   
 }

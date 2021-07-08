@@ -60,7 +60,7 @@ const upload = async (req, res) => {
   const Adress = "http://localhost:3000/" + file.name;
   const verif = await authenticate(token, res);
   console.log(promotion);
-  file.mv("./app/uploads/" + file.name);
+  file.mv("../uploads/" + file.name);
   await new Documents({
     idauthor: verif.id,
     title: title,
