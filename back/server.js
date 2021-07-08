@@ -20,6 +20,8 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use(express.static("app/uploads"));
+
 routes(app);
 
 const server = app.listen(3000, () => {

@@ -63,7 +63,7 @@ const register = async (req, res) => {
       firstname,
       email,
       password,
-      yearpromotion
+      yearpromotion,
     }).save();
     console.log("terminé !");
     res.json({ message: "ok" });
@@ -92,12 +92,6 @@ const upload = async (req, res) => {
   res.status(200);
 };
 
-const search = async (req, res) => {
-  const token = req.headers.authorization;
-  const keyword = req.body.keyword;
-  const verif = authenticate(token, res);
-};
-
 const me = async (req, res) => {
   const token = req.headers.authorization;
   //console.log(res);
@@ -120,16 +114,31 @@ async function authenticate(token, res) {
 }
 
 const research = async (req, res) => {
-  //const token = req.headers.authorization;
+  const token = req.headers.authorization;
   /*console.log("DEBUT");
   console.log(req.headers.argument);*/
   const arg = req.headers.argument;
-  //const verif = await authenticate(token, res);
-  //const student = await Student.where("idstudent", id).fetch();
+  const verif = await authenticate(token, res);
+  //const student = await Student.where("idetudiant", id).fetch();
   //const student = await Test.where('document_tokens', '@@', "jump").fetch();//"to_tsvector(document_text) @@ to_tsquery(\'jump & quick\')"
-  const student = await Test.query('where', 'ts_vector', '@@', arg).fetchAll();
+  const student = await Test.query(
+    "where",
+    "document_tokens",
+    "@@",
+    arg
+  ).fetchAll();
   res.status(200).json({ informations: student });
   //console.log(student)
 };
 
-export default { base, register, test, test2, upload, me, login, authenticate, research };
+export default {
+  base,
+  register,
+  test,
+  test2,
+  upload,
+  me,
+  login,
+  authenticate,
+  research,
+};
