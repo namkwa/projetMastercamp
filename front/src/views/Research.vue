@@ -37,7 +37,7 @@
       <div class="container">
         <div v-for="(group, name) in groups" :key="name">
          <a @click="group.open = !group.open" class="titlegroup"> {{ group.name }} </a>
-           <ul v-show="group.open">
+           <ul v-show="group.open" id="langage">
            <li v-for="item in group.items" :key="item">
              <input class="box" type="checkbox"><label class="enum"> {{ item }} </label> 
            </li>
@@ -337,6 +337,11 @@ input::-webkit-input-placeholder {
   font-size: 1.8em;
   justify-content: left;
   color : #757575;
+}
+
+#langage{
+  text-align: justify;
+  /* text-align: center; */
 }
 
 .enum {
