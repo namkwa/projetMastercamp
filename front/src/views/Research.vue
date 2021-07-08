@@ -1,38 +1,50 @@
-
-
-
 <template>
   <div class="home">
     <div class="home_wrapper">
-      <div class="home_wrapper_rechercher">
+      <!-- <div class="home_wrapper_rechercher">
         <div class="home_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
         </div>
         <div class="home_wrapper_rechercher_title">Rechercher</div>
-      </div>
-      <div class="home_wrapper_partager">
-        <div class="home_wrapper_partager_logo">
-          <img src="image/upload.png" />
-        </div>
-        <div class="home_wrapper_partager_title">Partager</div>
-      </div>
-      <div class="home_wrapper_projet">
-        <div class="home_wrapper_projet_logo">
-          <img src="image/myprojects.png" />
-        </div>
-        <div class="home_wrapper_projet_title">Mes Projets</div>
-      </div>
+      </div> -->
+      <a href="/document" class="path">
+        <div class="home_wrapper_partager">
+          <div class="home_wrapper_partager_logo">
+            <img src="image/upload.png" />
+          </div>
+          <div class="home_wrapper_partager_title">Partager</div>
+        </div></a
+      ><a href="/user" class="path">
+        <div class="home_wrapper_projet">
+          <div class="home_wrapper_projet_logo">
+            <img src="image/myprojects.png" />
+          </div>
+          <div class="home_wrapper_projet_title">Mon profil</div>
+        </div></a
+      >
     </div>
-    
-    
-    <div class="rsch_menu">
 
-      <div class="rsch1">
-        <form id="demo-2">
-          <input type="search" placeholder="Search">
-        </form>
+    <div class="rsch">
+      <div class="rsch_result">
+        <li v-if="liste[0] == undefined" class="result">Aucun résultat</li>
+        <li v-for="item in liste" :key="item.message" class="result">
+          {{ item.title }} : {{ item.description }}
+          <button type="button" @click="downloadResource(item.adress, false)">
+            envoyer
+          </button>
+        </li>
       </div>
+      <div class="rsch_menu">
+        <div class="rsch1">
+          <form id="demo-2">
+            <input id="search" type="search" placeholder="Search" />
+            <button type="button" @click="chercher" id="btn_rsch">
+              rechercher
+            </button>
+          </form>
+        </div>
 
+<<<<<<< HEAD
     
       <div class="container">
         <div v-for="(group, name) in groups" :key="name">
@@ -43,27 +55,34 @@
            </li>
           </ul>
           <hr>
+=======
+        <div class="container">
+          <div v-for="(group, name) in groups" :key="name">
+            <a @click="group.open = !group.open" class="titlegroup">
+              {{ group.name }}
+            </a>
+            <ul v-show="group.open" id="langage">
+              <li v-for="item in group.items" :key="item">
+                <input class="box" type="checkbox" /><label class="enum">
+                  {{ item }}
+                </label>
+              </li>
+            </ul>
+            <hr />
+          </div>
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
         </div>
       </div>
-
     </div>
   </div>
-
-
 </template>
 
-
-
-
-
 <script>
-
 var groups = {
   "GROUP A": {
-    "name": "Prépas et majeurs",
-    "open": false,
-    "items": [
-
+    name: "Prépas et majeurs",
+    open: false,
+    items: [
       "L1 BioNumérique",
       "L1 Classique",
       "L1 Inter",
@@ -89,16 +108,21 @@ var groups = {
       "Systèmes robotiques & Drones",
       "Transports intelligents",
       "Imagerie et Réalité Virtuelle",
-      "Energie & Smart Grids"
-
-    ]
+      "Energie & Smart Grids",
+    ],
   },
   "GROUP B": {
+<<<<<<< HEAD
     "name": "Langage Informatique",
     "open": false,
     "items": [
       "Angular",
       "Assembly",
+=======
+    name: "Langage Informatique",
+    open: false,
+    items: [
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
       "C",
       "C++",
       "C#",
@@ -116,13 +140,13 @@ var groups = {
       "UML",
       "Unity",
       "SQL",
-      "Swift"
-    ]
+      "Swift",
+    ],
   },
   "GROUP C": {
-    "name": "Année de réalisation",
-    "open": false,
-    "items": [
+    name: "Année de réalisation",
+    open: false,
+    items: [
       "2010",
       "2011",
       "2012",
@@ -135,30 +159,63 @@ var groups = {
       "2019",
       "2020",
       "2021",
-    ]
+    ],
   },
-
-}
-
+};
+import { research } from "../api/research.js";
 export default {
   data() {
-    return{
-      groups: groups
-      }
-  }
-  
-}
-
+    return {
+      groups: groups,
+      liste: [],
+    };
+  },
+  methods: {
+    async chercher() {
+      //console.log("front")
+      var search = document
+        .getElementById("search")
+        .value.replaceAll(" ", " | ");
+      //console.log(search);
+      var res = await research({
+        string: search,
+      });
+      this.liste = res.data.informations;
+      console.log("LISTE : ");
+      console.log(this.liste);
+      //output.src = event.target.result;
+    },
+    downloadResource(url, filename) {
+      if (!filename)
+        filename = url
+          .split("\\")
+          .pop()
+          .split("/")
+          .pop();
+      fetch(url, {
+        headers: new Headers({
+          Origin: location.origin,
+        }),
+        mode: "cors",
+      })
+        .then((response) => response.blob())
+        .then((blob) => {
+          let blobUrl = window.URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.download = filename;
+          a.href = blobUrl;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        })
+        .catch((e) => console.error(e));
+    },
+  },
+};
 </script>
 
-
-
-
-
-
 <style scoped>
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
 .home {
   /* display: flex;
@@ -168,6 +225,11 @@ export default {
   width: 100vw;
   height: 80vh;
 }
+
+.path {
+  text-decoration: none;
+}
+
 .home_wrapper {
   display: flex;
   justify-content: center;
@@ -238,31 +300,73 @@ export default {
   text-transform: uppercase;
 }
 
+.rsch_result {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100vh;
+  width: 100vw;
+  margin-top: 20%;
+}
+
+.rsch {
+  display: flex;
+  height: 100vh;
+}
+
 .rsch_menu {
+<<<<<<< HEAD
     display: flex;
     justify-content: left;
     border-right : 2px solid #C7C7C7;
     width: 20em;
     height:inherit;
     flex-direction: column;
+=======
+  display: flex;
+  justify-content: left;
+  border-right: 2px solid #c7c7c7;
+  width: 40em;
+  height: inherit;
+  flex-direction: column;
+  overflow: scroll;
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
 }
 
 .rsch_menu > div {
-  margin : 4%;
+  margin: 4%;
 }
 
 .rsch1 {
+<<<<<<< HEAD
   order : 1;
   
+=======
+  order: 1;
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
 }
 
+#btn_rsch {
+  background-color: #0e3b5a;
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  margin-left: 12px;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+}
 
 /* Barre recherche déroulante */
 input {
   outline: none;
-  
 }
-input[type=search] {
+input[type="search"] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
@@ -270,34 +374,34 @@ input[type=search] {
 }
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
-  display: none; 
+  display: none;
 }
 
-
-input[type=search] {
-  background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+input[type="search"] {
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    9px center;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 32px;
   width: 55px;
-  
+
   -webkit-border-radius: 10em;
   -moz-border-radius: 10em;
   border-radius: 10em;
-  
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  transition: all .5s;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
 }
-input[type=search]:focus {
+input[type="search"]:focus {
   width: 130px;
   background-color: #fff;
-  border-color: #66CC75;
-  
-  -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-  -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-  box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
+  border-color: #66cc75;
 
+  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+  box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+}
 
 input:-moz-placeholder {
   color: #999;
@@ -306,16 +410,16 @@ input::-webkit-input-placeholder {
   color: #999;
 }
 
-#demo-2 input[type=search] {
+#demo-2 input[type="search"] {
   width: 15px;
   padding-left: 10px;
   color: transparent;
   cursor: pointer;
 }
-#demo-2 input[type=search]:hover {
+#demo-2 input[type="search"]:hover {
   background-color: #fff;
 }
-#demo-2 input[type=search]:focus {
+#demo-2 input[type="search"]:focus {
   width: 130px;
   padding-left: 32px;
   color: #000;
@@ -330,33 +434,31 @@ input::-webkit-input-placeholder {
 }
 /* FIN barre recherche déroulante */
 
-
-
-
-.container{
+.container {
   order: 2;
   overflow : auto;
 }
 
 .titlegroup {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8em;
   justify-content: left;
-  color : #757575;
+  color: #757575;
 }
 
+<<<<<<< HEAD
 .list{
+=======
+#langage {
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
   text-align: justify;
   /* text-align: center; */
 }
 
 .enum {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   justify-content: left;
-  color : #757575;
+  color: #757575;
   margin: 0.3em;
 }
-
-
-
 </style>

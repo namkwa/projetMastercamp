@@ -60,7 +60,7 @@ const upload = async (req, res) => {
   const Adress = "http://localhost:3000/" + file.name;
   const verif = await authenticate(token, res);
   console.log(promotion);
-  file.mv("../uploads/" + file.name);
+  file.mv("./app/uploads/" + file.name);
   await new Documents({
     idauthor: verif.id,
     title: title,
@@ -69,8 +69,10 @@ const upload = async (req, res) => {
     type: file.mimetype,
     description: desc,
     promotion: promotion,
+    ts_vector: desc,
   }).save();
 
+  //await Documents.set("promotion", "do");
   res.status(200);
 };
 
@@ -89,11 +91,12 @@ const getProjects = async (req, res) => {
   const token = req.headers.authorization;
   //console.log(res);
   const verif = await authenticate(token, res);
-  console.log(token);
+  console.log("TOKEN");
   const id = verif.id;
   console.log(verif);
-  const student = await Documents.where("idauthor", id).fetchAll();
-  res.status(200).json({ informations: student.attributes });
+  const docs = await Documents.where("idauthor", id).fetchAll();
+  console.log(docs);
+  res.status(200).json({ informations: docs });
 };
 
 async function authenticate(token, res) {
@@ -119,7 +122,6 @@ const research = async (req, res) => {
     "@@",
     arg
   ).fetchAll();
-  console.log(student.data);
   res.status(200).json({ informations: student });
   //console.log(student)
 };

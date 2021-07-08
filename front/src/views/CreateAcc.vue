@@ -33,7 +33,7 @@
           />
           <input type="text" id="fname" placeholder="Prénom" v-model="prenom" />
         </div>
-        <div class="create_wrapper_checkbox">
+        <!--<div class="create_wrapper_checkbox">
           <label class="container">Déjà diplomé.e ?</label>
           <input
             type="checkbox"
@@ -41,7 +41,7 @@
             id="graduated"
             v-model="diplome"
           />
-        </div>
+        </div>-->
         <div class="create_wrapper_year">
           <div class="create_wrapper_year_sub">
             <button class="button_creation" type="button" @click="Account">
