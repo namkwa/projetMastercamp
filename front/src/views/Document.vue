@@ -5,7 +5,7 @@
     <input
       type="text"
       enctype="multipart/form-data"
-      placeholder="rechercher"
+      placeholder="Rechercher"
       id="search"
     />
 

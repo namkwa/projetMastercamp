@@ -37,7 +37,7 @@
       <div class="container">
         <div v-for="(group, name) in groups" :key="name">
          <a @click="group.open = !group.open" class="titlegroup"> {{ group.name }} </a>
-           <ul v-show="group.open" id="langage">
+           <ul v-show="group.open" class="list">
            <li v-for="item in group.items" :key="item">
              <input class="box" type="checkbox"><label class="enum"> {{ item }} </label> 
            </li>
@@ -97,16 +97,21 @@ var groups = {
     "name": "Langage Informatique",
     "open": false,
     "items": [
+      "Angular",
+      "Assembly",
       "C",
       "C++",
       "C#",
       "HTML/CSS",
+      "MatLab",
       "Python",
       "PHP",
       "Java",
       "JavaScript",
+      "Express.js",
+      "Node.js",
+      "TypeScript",
       "Vue.js",
-      "React.js",
       "Ruby",
       "UML",
       "Unity",
@@ -240,7 +245,6 @@ export default {
     width: 20em;
     height:inherit;
     flex-direction: column;
-    overflow:scroll;
 }
 
 .rsch_menu > div {
@@ -249,6 +253,7 @@ export default {
 
 .rsch1 {
   order : 1;
+  
 }
 
 
@@ -330,6 +335,7 @@ input::-webkit-input-placeholder {
 
 .container{
   order: 2;
+  overflow : auto;
 }
 
 .titlegroup {
@@ -339,7 +345,7 @@ input::-webkit-input-placeholder {
   color : #757575;
 }
 
-#langage{
+.list{
   text-align: justify;
   /* text-align: center; */
 }
