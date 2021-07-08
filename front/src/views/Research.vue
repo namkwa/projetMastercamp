@@ -30,12 +30,10 @@
     <div class="rsch_menu">
       <div class="rsch1">
         <form id="demo-2">
-          <<<<<<< HEAD
           <input type="search" placeholder="Search" />
-          =======
+
           <input id="search" type="search" placeholder="Search" />
           <button type="button" @click="chercher">rechercher</button>
-          >>>>>>> 94106ae6ca662605fe1c1799f006d29a87b42fe3
         </form>
         <li v-if="liste[0] == undefined">Aucun résultat</li>
         <li v-for="item in liste" :key="item.message">
