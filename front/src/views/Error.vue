@@ -8,7 +8,7 @@
           vous cherchez semble introuvable :(
           <button
             @click="
-              downloadResource('http://localhost:3000/pierre.png', 'pierre.png')
+              downloadResource('http://localhost:3000/Planning Mastercamp.ods', 'planning.ods')
             "
           >
             salut

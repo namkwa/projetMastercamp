@@ -103,6 +103,17 @@ const me = async (req, res) => {
   res.status(200).json({ informations: student.attributes });
 };
 
+const getProjects = async (req, res) => {
+  const token = req.headers.authorization;
+  //console.log(res);
+  const verif = await authenticate(token, res);
+  console.log(token);
+  const id = verif.id;
+  console.log(verif);
+  const student = await Documents.where("idauthor", id).fetchAll();
+  res.status(200).json({ informations: student.attributes });
+};
+
 async function authenticate(token, res) {
   try {
     const verif = await jwt.verify(token, "trestressecret");
@@ -138,6 +149,7 @@ export default {
   test2,
   upload,
   me,
+  getProjects,
   login,
   authenticate,
   research,

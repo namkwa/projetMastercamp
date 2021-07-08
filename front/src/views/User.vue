@@ -2,16 +2,16 @@
   <div class="user">
     <div class="user_wrapper">
       <div class="user_wrapper_rechercher">
-        <div class="user_wrapper_rechercher_logo">
+        <div @click= "goToDocument()" class="user_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
         </div>
-        <div class="user_wrapper_rechercher_title">Rechercher</div>
+        <div @click= "goToDocument()" class="user_wrapper_rechercher_title">Rechercher</div>
       </div>
       <div class="user_wrapper_partager">
-        <div class="user_wrapper_partager_logo">
+        <div @click= "goToDocument()" class="user_wrapper_partager_logo">
           <img src="image/upload.png" />
         </div>
-        <div class="user_wrapper_partager_title">Partager</div>
+        <div @click= "goToDocument()" class="user_wrapper_partager_title">Partager</div>
       </div>
       <div class="user_wrapper_projet">
         <div class="user_wrapper_projet_logo">
@@ -84,27 +84,39 @@
 
 <script>
 import { me } from "../api/me.js";
+import { getProjects } from "../api/getProjects.js";
+import router from "../router/index.js";
 export default {
   mounted: async function(){
-    var infos = await me();
-    console.log(infos);
-
-    const informations = infos.data.informations;
-    //localStorage.setItem("token", token);
-    this.nom = informations.name
-    this.prenom = informations.firstname
-    this.email = informations.email
-    this.yearPromotion = informations.yearpromotion
+    /*console.log("ICIOOOOOOOOOOOOOOO");
+    console.log(localStorage.getItem("token"));*/
+    //if (localStorage.getItem("token") != undefined) {
+      var infos = await me();
+      console.log(infos);
+      var projects = await getProjects();
+      console.log(projects);
+      const informations = infos.data.informations;
+      //localStorage.setItem("token", token);
+      console.log(informations);
+      this.nom = informations.name
+      this.prenom = informations.firstname
+      this.email = informations.email
+      this.yearPromotion = informations.yearpromotion
+    //}
   },
   data() {
     return {
-      nom: "",
+      nom: "Vous n'êtes pas connecté",
       prenom: "",
       email: "",
-      yearPromotion: 0,
+      yearPromotion: undefined,
     };
   },
-  methods: {},
+  methods: {
+    goToDocument() {
+      router.push("/Document").catch(() => {});
+    },
+  },
 };
 </script>
 

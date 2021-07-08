@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import router from "../router/index.js";
 import { login } from "../api/login.js";
 export default {
   data() {
@@ -48,6 +49,10 @@ export default {
       var token = await login({ email: this.email, password: this.password });
       localStorage.setItem("token", token.data);
       console.log(token);
+      this.goToUser();
+    },
+    goToUser() {
+      router.push("/User").catch(() => {});
     },
   },
 };
