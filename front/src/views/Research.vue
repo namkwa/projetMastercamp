@@ -27,7 +27,7 @@
     <div class="rsch">
       <div class="rsch_result">
         <li v-if="liste[0] == undefined" class="result">Aucun résultat</li>
-        <li v-for="item in liste" :key="item.message" class="result">
+        <li v-for="item in liste" :key="item.message" class="content_list">
           {{ item.title }} : {{ item.description }}
           <button type="button" @click="downloadResource(item.adress, false)">
             envoyer
@@ -162,12 +162,7 @@ export default {
       //output.src = event.target.result;
     },
     downloadResource(url, filename) {
-      if (!filename)
-        filename = url
-          .split("\\")
-          .pop()
-          .split("/")
-          .pop();
+      if (!filename) filename = url.split("\\").pop().split("/").pop();
       fetch(url, {
         headers: new Headers({
           Origin: location.origin,
@@ -282,7 +277,12 @@ export default {
   /* align-items: center; */
   height: 100vh;
   width: 100vw;
-  margin-top: 20%;
+  margin-top: 10%;
+}
+
+.content_list {
+  display: flex;
+  flex-direction: column;
 }
 
 .rsch {
