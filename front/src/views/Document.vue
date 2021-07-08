@@ -61,7 +61,12 @@
       v-model="description"
       placeholder="Description"
     />
-    <input list="years" name="years" id="browser" placeholder="Promotion" />
+    <input
+      type="text"
+      id="promotion"
+      placeholder="Promotion"
+      v-model="promotion"
+    />
 
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
