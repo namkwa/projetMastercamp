@@ -24,36 +24,38 @@
       >
     </div>
 
-    <div class="rsch_menu">
-      <div class="rsch1">
-        <form id="demo-2">
-          <!--<input type="search" placeholder="Search" />-->
-
-          <input id="search" type="search" placeholder="Search" />
-          <button type="button" @click="chercher">rechercher</button>
-        </form>
-        <li v-if="liste[0] == undefined">Aucun résultat</li>
-        <li v-for="item in liste" :key="item.message">
+    <div class="rsch">
+      <div class="rsch_result">
+        <li v-if="liste[0] == undefined" class="result">Aucun résultat</li>
+        <li v-for="item in liste" :key="item.message" class="result">
           {{ item.title }} : {{ item.description }}
           <button type="button" @click="downloadResource(item.adress, false)">
             envoyer
           </button>
         </li>
       </div>
+      <div class="rsch_menu">
+        <div class="rsch1">
+          <form id="demo-2">
+            <input id="search" type="search" placeholder="Search" />
+            <button type="button" @click="chercher">rechercher</button>
+          </form>
+        </div>
 
-      <div class="container">
-        <div v-for="(group, name) in groups" :key="name">
-          <a @click="group.open = !group.open" class="titlegroup">
-            {{ group.name }}
-          </a>
-          <ul v-show="group.open" id="langage">
-            <li v-for="item in group.items" :key="item">
-              <input class="box" type="checkbox" /><label class="enum">
-                {{ item }}
-              </label>
-            </li>
-          </ul>
-          <hr />
+        <div class="container">
+          <div v-for="(group, name) in groups" :key="name">
+            <a @click="group.open = !group.open" class="titlegroup">
+              {{ group.name }}
+            </a>
+            <ul v-show="group.open" id="langage">
+              <li v-for="item in group.items" :key="item">
+                <input class="box" type="checkbox" /><label class="enum">
+                  {{ item }}
+                </label>
+              </li>
+            </ul>
+            <hr />
+          </div>
         </div>
       </div>
     </div>
@@ -270,6 +272,20 @@ export default {
   display: flex;
   align-items: center;
   text-transform: uppercase;
+}
+
+.rsch_result {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 100vh;
+  width: 100vw;
+  margin-top: 20%;
+}
+
+.rsch {
+  display: flex;
+  height: 100vh;
 }
 
 .rsch_menu {
