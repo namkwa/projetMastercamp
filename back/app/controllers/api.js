@@ -5,27 +5,6 @@ import bcrypt from "bcrypt";
 import Bookshelf from "bookshelf";
 import jwt from "jsonwebtoken";
 
-const base = (req, res) => {
-  res.json("base api");
-};
-
-const test = async (req, res) => {
-  const { nom, prenom, email, password, login } = req.body;
-  const user = await new Student({
-    nom,
-    prenom,
-    email,
-    password,
-    login,
-  }).save();
-  res.json(user);
-};
-
-const test2 = async (req, res) => {
-  const student = await Student.fetchAll();
-  res.json(student);
-};
-
 //Requête de connexion
 const login = async (req, res) => {
   const request = await Student.where("email", req.body.email).fetch();
@@ -77,16 +56,19 @@ const upload = async (req, res) => {
   const file = req.files.file;
   const title = req.body.title;
   const desc = req.body.description;
-  const etat = "fini";
-  const relativeAdress = "./app/uploads/" + file.name;
+  const promotion = req.body.promotion;
+  const Adress = "http://localhost:3000/" + file.name;
   const verif = await authenticate(token, res);
-  console.log(verif);
-  file.mv(relativeAdress);
+  console.log(promotion);
+  file.mv("../uploads/" + file.name);
   await new Documents({
-    titredoc: title,
-    adresse: relativeAdress,
-    etatdoc: etat,
-    typedoc: desc,
+    idauthor: verif.id,
+    title: title,
+    adress: Adress,
+    size: file.size,
+    type: file.mimetype,
+    description: desc,
+    promotion: promotion,
   }).save();
 
   res.status(200);
@@ -117,7 +99,6 @@ const getProjects = async (req, res) => {
 async function authenticate(token, res) {
   try {
     const verif = await jwt.verify(token, "trestressecret");
-    console.log(verif)
     return verif;
   } catch (err) {
     res.status(401);
@@ -132,21 +113,19 @@ const research = async (req, res) => {
   const verif = await authenticate(token, res);
   //const student = await Student.where("idetudiant", id).fetch();
   //const student = await Test.where('document_tokens', '@@', "jump").fetch();//"to_tsvector(document_text) @@ to_tsquery(\'jump & quick\')"
-  const student = await Test.query(
+  const student = await Documents.query(
     "where",
-    "document_tokens",
+    "ts_vector",
     "@@",
     arg
   ).fetchAll();
+  console.log(student.data);
   res.status(200).json({ informations: student });
   //console.log(student)
 };
 
 export default {
-  base,
   register,
-  test,
-  test2,
   upload,
   me,
   getProjects,
