@@ -1,7 +1,5 @@
 <template>
   <div class="document">
-    <h1>Envoi de documents</h1>
-
     <input
       type="text"
       enctype="multipart/form-data"
@@ -10,10 +8,12 @@
     />
 
     <button type="button" @click="chercher">Rechercher</button>
-    <li v-if="liste[0] == undefined">Aucun résultat</li>
+    <li v-if="liste[0] == undefined" id="no-result">Aucun résultat</li>
     <li v-for="item in liste" :key="item.message">
       {{ item.document_id }} {{ item.document_text }}
     </li>
+    <h1>Envoi de documents</h1>
+
     <input
       type="file"
       enctype="multipart/form-data"
@@ -34,7 +34,7 @@
       v-model="description"
       placeholder="Description"
     />
-    <input list="years" name="years" id="browser" />
+    <input list="years" name="years" id="browser" placeholder="Promotion" />
 
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
@@ -104,8 +104,16 @@ export default {
 
 h1 {
   color: #757575;
-  margin-top: 150px;
+  margin-top: 100px;
   margin-bottom: 50px;
   font-size: 3em;
+}
+
+#search {
+  margin-top: 50px;
+}
+
+#no-result {
+  margin-top: 30px;
 }
 </style>

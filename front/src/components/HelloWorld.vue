@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="home_wrapper">
-      <a href="/document" class="path_doc">
+      <a href="/research" class="path_doc">
         <div class="home_wrapper_rechercher">
           <div class="home_wrapper_rechercher_logo">
             <img src="image/loupe.png" />
