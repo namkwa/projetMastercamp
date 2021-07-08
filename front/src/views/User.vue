@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <div class="user_wrapper">
+    <!-- <div class="user_wrapper">
       <div class="user_wrapper_rechercher">
         <div @click="goToDocument()" class="user_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
@@ -23,7 +23,7 @@
         </div>
         <div class="user_wrapper_projet_title">Mes Projets</div>
       </div>
-    </div>
+    </div> -->
     <div class="user_content1">
       <div class="user_content1_right">
         <div class="user_content1_right_title">Contact</div>
@@ -50,7 +50,7 @@
           -langages qu’il utilise (python, java, etc...)<br />
           -Softskills et logiciels utilisés
         </div> -->
-        <div class="user_content2_info_title">Informations</div>
+        <!-- <div class="user_content2_info_title">Informations</div> -->
       </div>
     </div>
     <div class="user_content3">
