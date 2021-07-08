@@ -95,12 +95,6 @@ input:focus {
   border-color: blue;
 }
 
-/* form {
-  display: flex;
-  align-items: space-between;
-  flex-direction: column;
-} */
-
 .login_wrapper_email {
   padding-bottom: 30px;
 }
