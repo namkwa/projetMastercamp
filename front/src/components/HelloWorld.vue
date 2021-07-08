@@ -26,7 +26,7 @@
       >
     </div>
     <div class="home_content1">
-      <div class="home_content1_echange">
+      <!--<div class="home_content1_echange">
         <div class="home_content1_echange_logo">
           <img id="echangeLogo" src="image/echange.png" />
         </div>
@@ -34,7 +34,7 @@
           Entrez en contact avec<br />
           les créateur d’anciens projets
         </div>
-      </div>
+      </div>-->
       <div class="home_content1_search">
         <div class="home_content1_search_logo">
           <img id="searchLogo" src="image/search.png" />

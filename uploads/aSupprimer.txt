@@ -1,0 +1,97 @@
+Scanner login = new Scanner(System.in);
+		      System.out.println("Saisissez votre login");
+		  	
+		  	Scanner passwd = new Scanner(System.in);
+		      System.out.println("Saisissez votre mot de passe");
+
+		      String id = login.nextLine();
+		      System.out.println("Identifiant " + id);
+		  	String mdp = passwd.nextLine();
+		      System.out.println("Mot de passe " + mdp);
+		      Employe employé = new Employe(id, mdp);
+		      Employe compte = employé.login(stmt);
+		      if (compte.getClass() == Gerant.class) {
+		    	  //Aller à la fonction gérant
+		    	  Scanner action = new Scanner(System.in);
+			  		System.out.println("Que souhaitez-vous faire ?");
+			  		System.out.println("1.Gestion des clients");
+	  				System.out.println("2.Gestion des véhicules");
+	  				System.out.println("3.Gestion des réservations");
+	  				System.out.println("4.Gestion des locations");
+	  				System.out.println("5.Performances agences");
+	  				String act = action.nextLine();
+		    	  switch(act)
+		          {
+		  			case "1":
+		  				System.out.println("Gestion des clients");
+		  				Scanner actionCase1 = new Scanner(System.in);
+		  				System.out.println("Que souhaitez-vous faire ?");
+		  				System.out.println("1.Ajouter un client");
+		  				System.out.println("2.Rechercher un clients");
+		  				String actCase1 = actionCase1.nextLine();
+		  				switch(actCase1) {
+		  				case "1":
+		  					System.out.println("1.Ajouter un client");
+		  					System.out.print("Nom : ");
+			  				Scanner prenom = new Scanner(System.in);
+			  				System.out.print("\nPrénom: ");
+			  				Scanner nom = new Scanner(System.in);
+			  				System.out.print("\nEmail : ");
+			  				Scanner email = new Scanner(System.in);
+			  				System.out.print("\nNuméro de téléphone : ");
+			  				Scanner numTel = new Scanner(System.in);
+			  				System.out.print("\nRue : ");
+			  				Scanner rue = new Scanner(System.in);
+			  				System.out.print("\nVille : ");
+			  				Scanner ville = new Scanner(System.in);
+			  				System.out.print("\nCode postal : ");
+			  				Scanner codePostal = new Scanner(System.in);
+			  				Client client = new Client(nom.nextLine(),prenom.nextLine(),email.nextLine(),numTel.nextLine()
+			  						,stmt, rue.nextLine(),ville.nextLine(),Integer.parseInt(codePostal.nextLine()));
+		  				break;
+		  				default:
+		  					System.out.println("2.Rechercher un clients");
+		  					System.out.print("Nom : ");
+			  				Scanner prenom2 = new Scanner(System.in);
+			  				System.out.print("\nPrénom: ");
+			  				Scanner nom2 = new Scanner(System.in);
+		  					compte.clientResearch(nom2.nextLine(),prenom2.nextLine());
+		  				break;
+		  				}
+		  				
+		  			break;
+		  			case "2":
+		  				System.out.println("Gestion des véhicules");
+		  			break;
+		  			case "3":
+		  				System.out.println("Gestion des réservations");
+		  			break;
+		  			case "4":
+		  				System.out.println("Gestion des locations");
+		  			break;
+		  			default:
+		  				System.out.println("Performances agences");
+		  			break;
+		  			}
+		      }
+		      else if (compte.getClass() == Chauffeur.class) {
+		    	  //Aller à la fonction chauffeur
+
+		    	  Scanner action = new Scanner(System.in);
+			  		System.out.println("Que souhaitez-vous faire ?");
+			  		System.out.println("1.Obtenir la mission");
+			  		System.out.println("2.Vérifier les disponibilités de places");
+			  		String act = action.nextLine();
+		  			//actions pour le chauffeur
+			  		switch(act) {
+		  			case "1":
+		  				System.out.println("Obtenir la mission");
+		  				//Aller à fonction
+		  				compte.getCircuit(stmt);
+		  			break;
+		  			default:
+		  				System.out.println("Vérifier les disponibilités de places");
+		  				//Il manque ici
+		  			break;
+			  		}
+		      }

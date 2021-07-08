@@ -1,0 +1,157 @@
+CREATE DATABASE baseDeDonnées;
+CREATE TABLE Abonnement(
+   IdAbonnement INT NOT NULL AUTO_INCREMENT,
+   Duree DATE,
+   Description VARCHAR(50),
+   Prix INT,
+   Taux DECIMAL(15,2),
+   PRIMARY KEY(IdAbonnement)
+);
+
+CREATE TABLE Adresse(
+   IdAdresse INT NOT NULL AUTO_INCREMENT,
+   Rue VARCHAR(50),
+   Ville VARCHAR(50),
+   CodePostal INT,
+   PRIMARY KEY(IdAdresse)
+);
+
+CREATE TABLE Agence(
+   IdAgence INT NOT NULL AUTO_INCREMENT,
+   Nom VARCHAR(50),
+   NbVehicules INT,
+   Telephone INT,
+   Geolocalisation VARCHAR(50),
+   NbVehiculesMax INT,
+   IdAdresse INT NOT NULL,
+   PRIMARY KEY(IdAgence),
+   FOREIGN KEY(IdAdresse) REFERENCES Adresse(IdAdresse)reserverrenouvelerlouerlouerlouer
+);
+
+CREATE TABLE Employé(
+   Login VARCHAR(50),
+   MotDePasse VARCHAR(50),
+   PRIMARY KEY(Login)
+);
+
+CREATE TABLE Catégorie(
+   NomCategorie VARCHAR(50),
+   Tarif INT,
+   Caution INT,
+   PRIMARY KEY(NomCategorie)
+);
+
+CREATE TABLE Gérant(
+   Login VARCHAR(50),
+   PRIMARY KEY(Login),
+   FOREIGN KEY(Login) REFERENCES Employé(Login)
+);
+
+CREATE TABLE DateAbonnement(
+   DateAbo DATE,
+   PRIMARY KEY(DateAbo)
+);
+
+CREATE TABLE Client(
+   IdClient INT NOT NULL AUTO_INCREMENT,
+   Nom VARCHAR(50),
+   Prenom VARCHAR(50),
+   Email VARCHAR(50),
+   NumTel VARCHAR(10),
+   IdAdresse INT NOT NULL,
+   IdAbonnement INT,
+   DateAbo DATE,
+   PRIMARY KEY(IdClient),
+   FOREIGN KEY(IdAdresse) REFERENCES Adresse(IdAdresse),
+   FOREIGN KEY(IdAbonnement) REFERENCES Abonnement(IdAbonnement),
+   FOREIGN KEY(DateAbo) REFERENCES DateAbonnement(DateAbo)
+);
+
+CREATE TABLE Voiture(
+   Matricule INT NOT NULL,
+   Marque VARCHAR(50),
+   Modele VARCHAR(50),
+   Kilometrage DECIMAL(15,2),
+   BoiteAuto BIT,
+   Climatisation BIT,
+   TypeCarburant VARCHAR(50),
+   NomCategorie VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Matricule),
+   FOREIGN KEY(NomCategorie) REFERENCES Catégorie(NomCategorie)
+);
+
+CREATE TABLE Chauffeur(
+   IdChauffeur INT NOT NULL AUTO_INCREMENT,
+   Login VARCHAR(50) NOT NULL,
+   PRIMARY KEY(IdChauffeur),
+   FOREIGN KEY(Login) REFERENCES Employé(Login)
+);
+
+CREATE TABLE Circuit(
+   IdAgence_Prendre INT,
+   IdAgence_Rendre INT,
+   Matricule_Deplacer INT,
+   IdChauffeur INT,
+   IdCamion INT NOT NULL,
+   PRIMARY KEY(IdAgence_Prendre, IdAgence_Rendre, Matricule_Deplacer, IdChauffeur),
+   FOREIGN KEY(IdAgence_Prendre) REFERENCES Agence(IdAgence),
+   FOREIGN KEY(IdAgence_Rendre) REFERENCES Agence(IdAgence),
+   FOREIGN KEY(Matricule_Deplacer) REFERENCES Voiture(Matricule),
+   FOREIGN KEY(IdChauffeur) REFERENCES Chauffeur(IdChauffeur)
+);
+
+CREATE TABLE Reserver(
+   IdClient INT,
+   Matricule INT,
+   DateReservation DATE,
+   PRIMARY KEY(IdClient, Matricule),
+   FOREIGN KEY(IdClient) REFERENCES Client(IdClient),
+   FOREIGN KEY(Matricule) REFERENCES Voiture(Matricule)
+);
+
+CREATE TABLE Louer(
+   IdClient INT,
+   Matricule INT,
+   DateDebut DATE,
+   DateFin DATE,
+   PRIMARY KEY(IdClient, Matricule),
+   FOREIGN KEY(IdClient) REFERENCES Client(IdClient),
+   FOREIGN KEY(Matricule) REFERENCES Voiture(Matricule)
+);
+
+CREATE TABLE Rendre(
+   IdClient INT,
+   Matricule INT,
+   EtatVehicule VARCHAR(50),
+   DateRendu DATE,
+   CarburantRestant DECIMAL(15,2),
+   PRIMARY KEY(IdClient, Matricule),
+   FOREIGN KEY(IdClient) REFERENCES Client(IdClient),
+   FOREIGN KEY(Matricule) REFERENCES Voiture(Matricule)
+);
+
+CREATE TABLE Travailler(
+   IdAgence INT,
+   Login VARCHAR(50),
+   PRIMARY KEY(IdAgence, Login),
+   FOREIGN KEY(IdAgence) REFERENCES Agence(IdAgence),
+   FOREIGN KEY(Login) REFERENCES Employé(Login)
+);
+
+CREATE TABLE Renouveler(
+   IdClient INT,
+   IdAbonnement INT,
+   DateAbo DATE,
+   PRIMARY KEY(IdClient, IdAbonnement, DateAbo),
+   FOREIGN KEY(IdClient) REFERENCES Client(IdClient),
+   FOREIGN KEY(IdAbonnement) REFERENCES Abonnement(IdAbonnement),
+   FOREIGN KEY(DateAbo) REFERENCES DateAbonnement(DateAbo)
+);
+
+CREATE TABLE Appartenir(
+   IdAgence INT,
+   Matricule INT,
+   PRIMARY KEY(IdAgence, Matricule),
+   FOREIGN KEY(IdAgence) REFERENCES Agence(IdAgence),
+   FOREIGN KEY(Matricule) REFERENCES Voiture(Matricule)
+);

@@ -10,7 +10,8 @@
     <button type="button" @click="chercher">Rechercher</button>
     <li v-if="liste[0] == undefined" id="no-result">Aucun résultat</li>
     <li v-for="item in liste" :key="item.message">
-      {{ item.document_id }} {{ item.document_text }}
+      {{ item.title }} {{ item.description }}
+      <button type="button" @click="handleClick">envoyer</button>
     </li>
     <h1>Envoi de documents</h1>
 
@@ -90,7 +91,9 @@ export default {
         string: search,
       });
       this.liste = res.data.informations;
-      console.log(this.liste[0]);
+      console.log("LISTE : ")
+      console.log(this.liste);
+      //output.src = event.target.result;
     },
   },
 };
