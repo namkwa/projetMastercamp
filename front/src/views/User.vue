@@ -1,11 +1,11 @@
 <template>
   <div class="user">
-     <div class="user_wrapper">
+    <div class="user_wrapper">
       <div class="user_wrapper_rechercher">
-        <div @click="goToDocument()" class="user_wrapper_rechercher_logo">
+        <div @click="goToResearch()" class="user_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
         </div>
-        <div @click="goToDocument()" class="user_wrapper_rechercher_title">
+        <div @click="goToResearch()" class="user_wrapper_rechercher_title">
           Rechercher
         </div>
       </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="user_wrapper_projet_title">Mes Projets</div>
       </div>-->
-    </div> 
+    </div>
     <div class="user_content1">
       <div class="user_content1_right">
         <div class="user_content1_right_title">Contact</div>
@@ -117,12 +117,15 @@ export default {
       prenom: "",
       email: "",
       yearPromotion: undefined,
-      liste: []
+      liste: [],
     };
   },
   methods: {
     goToDocument() {
       router.push("/Document").catch(() => {});
+    },
+    goToResearch() {
+      router.push("/Research").catch(() => {});
     },
   },
 };

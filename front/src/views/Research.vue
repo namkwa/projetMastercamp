@@ -4,52 +4,53 @@
 <template>
   <div class="home">
     <div class="home_wrapper">
-      <div class="home_wrapper_rechercher">
+      <!-- <div class="home_wrapper_rechercher">
         <div class="home_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
         </div>
         <div class="home_wrapper_rechercher_title">Rechercher</div>
-      </div>
-      <div class="home_wrapper_partager">
-        <div class="home_wrapper_partager_logo">
-          <img src="image/upload.png" />
-        </div>
-        <div class="home_wrapper_partager_title">Partager</div>
-      </div>
-      <div class="home_wrapper_projet">
-        <div class="home_wrapper_projet_logo">
-          <img src="image/myprojects.png" />
-        </div>
-        <div class="home_wrapper_projet_title">Mes Projets</div>
-      </div>
+      </div> -->
+      <a href="/document" class="path">
+        <div class="home_wrapper_partager">
+          <div class="home_wrapper_partager_logo">
+            <img src="image/upload.png" />
+          </div>
+          <div class="home_wrapper_partager_title">Partager</div>
+        </div></a
+      ><a href="/user" class="path">
+        <div class="home_wrapper_projet">
+          <div class="home_wrapper_projet_logo">
+            <img src="image/myprojects.png" />
+          </div>
+          <div class="home_wrapper_projet_title">Mon profil</div>
+        </div></a
+      >
     </div>
-    
-    
-    <div class="rsch_menu">
 
+    <div class="rsch_menu">
       <div class="rsch1">
         <form id="demo-2">
-          <input type="search" placeholder="Search">
+          <input type="search" placeholder="Search" />
         </form>
       </div>
 
-    
       <div class="container">
         <div v-for="(group, name) in groups" :key="name">
-         <a @click="group.open = !group.open" class="titlegroup"> {{ group.name }} </a>
-           <ul v-show="group.open" id="langage">
-           <li v-for="item in group.items" :key="item">
-             <input class="box" type="checkbox"><label class="enum"> {{ item }} </label> 
-           </li>
+          <a @click="group.open = !group.open" class="titlegroup">
+            {{ group.name }}
+          </a>
+          <ul v-show="group.open" id="langage">
+            <li v-for="item in group.items" :key="item">
+              <input class="box" type="checkbox" /><label class="enum">
+                {{ item }}
+              </label>
+            </li>
           </ul>
-          <hr>
+          <hr />
         </div>
       </div>
-
     </div>
   </div>
-
-
 </template>
 
 
@@ -57,13 +58,11 @@
 
 
 <script>
-
 var groups = {
   "GROUP A": {
-    "name": "Prépas et majeurs",
-    "open": false,
-    "items": [
-
+    name: "Prépas et majeurs",
+    open: false,
+    items: [
       "L1 BioNumérique",
       "L1 Classique",
       "L1 Inter",
@@ -89,14 +88,13 @@ var groups = {
       "Systèmes robotiques & Drones",
       "Transports intelligents",
       "Imagerie et Réalité Virtuelle",
-      "Energie & Smart Grids"
-
-    ]
+      "Energie & Smart Grids",
+    ],
   },
   "GROUP B": {
-    "name": "Langage Informatique",
-    "open": false,
-    "items": [
+    name: "Langage Informatique",
+    open: false,
+    items: [
       "C",
       "C++",
       "C#",
@@ -111,13 +109,13 @@ var groups = {
       "UML",
       "Unity",
       "SQL",
-      "Swift"
-    ]
+      "Swift",
+    ],
   },
   "GROUP C": {
-    "name": "Année de réalisation",
-    "open": false,
-    "items": [
+    name: "Année de réalisation",
+    open: false,
+    items: [
       "2010",
       "2011",
       "2012",
@@ -130,20 +128,17 @@ var groups = {
       "2019",
       "2020",
       "2021",
-    ]
+    ],
   },
-
-}
+};
 
 export default {
   data() {
-    return{
-      groups: groups
-      }
-  }
-  
-}
-
+    return {
+      groups: groups,
+    };
+  },
+};
 </script>
 
 
@@ -152,8 +147,7 @@ export default {
 
 
 <style scoped>
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
 .home {
   /* display: flex;
@@ -163,6 +157,11 @@ export default {
   width: 100vw;
   height: 80vh;
 }
+
+.path {
+  text-decoration: none;
+}
+
 .home_wrapper {
   display: flex;
   justify-content: center;
@@ -234,30 +233,28 @@ export default {
 }
 
 .rsch_menu {
-    display: flex;
-    justify-content: left;
-    border-right : 2px solid #C7C7C7;
-    width: 20em;
-    height:inherit;
-    flex-direction: column;
-    overflow:scroll;
+  display: flex;
+  justify-content: left;
+  border-right: 2px solid #c7c7c7;
+  width: 20em;
+  height: inherit;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 .rsch_menu > div {
-  margin : 4%;
+  margin: 4%;
 }
 
 .rsch1 {
-  order : 1;
+  order: 1;
 }
-
 
 /* Barre recherche déroulante */
 input {
   outline: none;
-  
 }
-input[type=search] {
+input[type="search"] {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
@@ -265,34 +262,34 @@ input[type=search] {
 }
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
-  display: none; 
+  display: none;
 }
 
-
-input[type=search] {
-  background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+input[type="search"] {
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    9px center;
   border: solid 1px #ccc;
   padding: 9px 10px 9px 32px;
   width: 55px;
-  
+
   -webkit-border-radius: 10em;
   -moz-border-radius: 10em;
   border-radius: 10em;
-  
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  transition: all .5s;
+
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
 }
-input[type=search]:focus {
+input[type="search"]:focus {
   width: 130px;
   background-color: #fff;
-  border-color: #66CC75;
-  
-  -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-  -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-  box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
+  border-color: #66cc75;
 
+  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+  box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+}
 
 input:-moz-placeholder {
   color: #999;
@@ -301,16 +298,16 @@ input::-webkit-input-placeholder {
   color: #999;
 }
 
-#demo-2 input[type=search] {
+#demo-2 input[type="search"] {
   width: 15px;
   padding-left: 10px;
   color: transparent;
   cursor: pointer;
 }
-#demo-2 input[type=search]:hover {
+#demo-2 input[type="search"]:hover {
   background-color: #fff;
 }
-#demo-2 input[type=search]:focus {
+#demo-2 input[type="search"]:focus {
   width: 130px;
   padding-left: 32px;
   color: #000;
@@ -325,32 +322,26 @@ input::-webkit-input-placeholder {
 }
 /* FIN barre recherche déroulante */
 
-
-
-
-.container{
+.container {
   order: 2;
 }
 
 .titlegroup {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8em;
   justify-content: left;
-  color : #757575;
+  color: #757575;
 }
 
-#langage{
+#langage {
   text-align: justify;
   /* text-align: center; */
 }
 
 .enum {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   justify-content: left;
-  color : #757575;
+  color: #757575;
   margin: 0.3em;
 }
-
-
-
 </style>

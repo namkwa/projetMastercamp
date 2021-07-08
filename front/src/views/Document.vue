@@ -1,5 +1,31 @@
 <template>
   <div class="document">
+    <div class="document_wrapper">
+      <a href="/research" class="path">
+        <div class="document_wrapper_rechercher">
+          <div class="document_wrapper_rechercher_logo">
+            <img src="image/loupe.png" />
+          </div>
+          <div class="document_wrapper_rechercher_title">Rechercher</div>
+        </div></a
+      >
+      <!-- <a href="/document" class="path">
+        <div class="document_wrapper_partager">
+          <div class="document_wrapper_partager_logo">
+            <img src="image/upload.png" />
+          </div>
+          <div class="document_wrapper_partager_title">Partager</div>
+        </div></a> -->
+      <a href="/user" class="path">
+        <div class="document_wrapper_projet">
+          <div class="document_wrapper_projet_logo">
+            <img src="image/myprojects.png" />
+          </div>
+          <div class="document_wrapper_projet_title">Mon profil</div>
+        </div></a
+      >
+    </div>
+
     <input
       type="text"
       enctype="multipart/form-data"
@@ -91,7 +117,7 @@ export default {
         string: search,
       });
       this.liste = res.data.informations;
-      console.log("LISTE : ")
+      console.log("LISTE : ");
       console.log(this.liste);
       //output.src = event.target.result;
     },
@@ -103,6 +129,80 @@ export default {
 .document {
   height: 80vh;
   width: 100vw;
+}
+
+.path {
+  text-decoration: none;
+}
+
+.document_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  border: 2px solid #c7c7c7;
+  width: 100vw;
+  height: 52px;
+  font-size: 1em;
+}
+
+.document_wrapper_rechercher {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #757575;
+  margin: 40px;
+}
+
+.document_wrapper_rechercher_logo {
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  width: 50px;
+}
+.document_wrapper_rechercher_title {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.document_wrapper_projet {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #757575;
+  margin: 40px;
+}
+
+.document_wrapper_projet_logo {
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  width: 50px;
+}
+
+.document_wrapper_projet_title {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.document_wrapper_partager {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #757575;
+  margin: 40px;
+}
+
+.document_wrapper_partager_logo {
+  display: flex;
+  justify-content: center;
+  height: 35px;
+  width: 50px;
+}
+
+.document_wrapper_partager_title {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
 }
 
 h1 {

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="home_wrapper">
-      <a href="/research" class="path_doc">
+      <a href="/research" class="path">
         <div class="home_wrapper_rechercher">
           <div class="home_wrapper_rechercher_logo">
             <img src="image/loupe.png" />
@@ -9,19 +9,19 @@
           <div class="home_wrapper_rechercher_title">Rechercher</div>
         </div></a
       >
-      <a href="/document" class="path_doc">
+      <a href="/document" class="path">
         <div class="home_wrapper_partager">
           <div class="home_wrapper_partager_logo">
             <img src="image/upload.png" />
           </div>
           <div class="home_wrapper_partager_title">Partager</div>
         </div> </a
-      ><a href="/user" class="path_user">
+      ><a href="/user" class="path">
         <div class="home_wrapper_projet">
           <div class="home_wrapper_projet_logo">
             <img src="image/myprojects.png" />
           </div>
-          <div class="home_wrapper_projet_title">Mes Projets</div>
+          <div class="home_wrapper_projet_title">Mon profil</div>
         </div></a
       >
     </div>
@@ -35,20 +35,21 @@
           les créateur d’anciens projets
         </div>
       </div>-->
-      <div class="home_content1_search">
-        <div class="home_content1_search_logo">
-          <img id="searchLogo" src="image/search.png" />
-        </div>
-        <div class="home_content1_echange_title">Recherchez des projets</div>
-      </div>
-    </div>
-    <div class="home_content2">
-      <a href="/document" class="path_doc">
-        <div class="home_content2_share">
-          <div class="home_content2_share_logo">
+      <a href="/research" class="path">
+        <div class="home_content1_search">
+          <div class="home_content1_search_logo">
+            <img id="searchLogo" src="image/search.png" />
+          </div>
+          <div class="home_content1_echange_title">Recherchez des projets</div>
+        </div></a
+      >
+
+      <a href="/document" class="path">
+        <div class="home_content1_share">
+          <div class="home_content1_share_logo">
             <img id="searchLogo" src="image/share.png" />
           </div>
-          <div class="home_content2_share_title">
+          <div class="home_content1_share_title">
             Partagez vos propres projets
           </div>
         </div>
@@ -132,11 +133,7 @@ export default {
   text-transform: uppercase;
 }
 
-.path_doc {
-  text-decoration: none;
-}
-
-.path_user {
+.path {
   text-decoration: none;
 }
 
@@ -164,7 +161,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 40vh;
+  height: 70vh;
 }
 
 #searchLogo {
@@ -177,12 +174,11 @@ export default {
   width: 120px;
 }
 
-.home_content2 {
-  display: flex;
-  justify-content: center;
+.home_content1_share_title {
+  color: #081f2f;
 }
 
-.home_content2_share_title {
+.home_content1_echange_title {
   color: #081f2f;
 }
 
