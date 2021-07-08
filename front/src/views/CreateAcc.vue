@@ -63,6 +63,7 @@
 
 <script>
 import { register } from "../api/register.js";
+import { login } from "../api/login.js";
 import router from "../router/index.js";
 export default {
   data() {
@@ -77,8 +78,8 @@ export default {
     };
   },
   methods: {
-    goToHome() {
-      router.push("/").catch(() => {});
+    goToUser() {
+      router.push("/user").catch(() => {});
     },
     async Account() {
       if (this.password == this.confirm) {
@@ -92,7 +93,9 @@ export default {
 
         if (res.data.message == "ok") {
           console.log("Le compte a été créé avec succès!");
-          this.goToHome();
+          var token = await login({ email: this.email, password: this.password });
+          localStorage.setItem("token", token.data);
+          this.goToUser();
         } else if (res.data.message == "Error") {
           alert("Cette adresse est déjà utilisée");
         } else {

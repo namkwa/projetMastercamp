@@ -56,10 +56,12 @@
     <div class="user_content3">
       <div class="user_content3_projet">
         <div class="user_content3_projet_title">Mes projets</div>
-        <li v-if="liste[0] == undefined">Aucun résultat</li>
-        <li v-for="item in liste" :key="item.message">
-          {{ item.title }} {{ item.description }}
-        </li>
+        <ul class="liste">
+          <li v-if="liste[0] == undefined">Aucun résultat</li>
+          <li v-for="item in liste" :key="item.message" class="element">
+            {{ item.title }} {{ item.description }}
+          </li>
+        </ul>
         <!--<div class="user_content3_projet_list">
           <div class="user_content3_projet_list_1">
             <div class="user_content3_projet_list_1_image">
@@ -384,5 +386,12 @@ h3 {
   color: #0e3b5a;
   font-weight: bold;
   font-size: 1.2em;
+}
+
+.liste {
+  text-align: left;
+  overflow-y:scroll; 
+  position:relative;
+  height: 300px;
 }
 </style>

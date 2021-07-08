@@ -25,7 +25,7 @@
         </div></a
       >
     </div>
-
+<!--
     <input
       type="text"
       enctype="multipart/form-data"
@@ -38,7 +38,7 @@
     <li v-for="item in liste" :key="item.message">
       {{ item.title }} : {{ item.description }}
       <button type="button" @click="handleClick">envoyer</button>
-    </li>
+    </li>-->
     <h1>Envoi de documents</h1>
 
     <input

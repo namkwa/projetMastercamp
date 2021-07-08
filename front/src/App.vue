@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header_wrapper">
       <div class="header_wrapper_nav">
-        <div class="header_wrapper_nav_route">
+        <div class="header_wrapper_nav_route"><!--
           <router-link to="/">home</router-link> |
           <router-link to="/login">login</router-link> |
           <router-link to="/create">create account</router-link> |
@@ -10,7 +10,7 @@
           <router-link to="/document">document</router-link> |
           <router-link to="/user">profil</router-link> |
           <router-link to="/research">recherche</router-link> |
-        </div>
+        --></div>
       </div>
       <div class="header_wrapper_logo">
         <router-link to="/">
@@ -25,7 +25,7 @@
             <img id="bell" src="image/bell.png" />
           </div> -->
         </div>
-        <router-link to="/login">
+        <router-link to="/">
           <div class="header_wrapper_logo_left">
             <div class="header_wrapper_logo_left_user">
               <img src="image/user.png" />
@@ -54,7 +54,7 @@ export default {
       alert("Vous êtes déconnecté !");
     },
     goToConnexion() {
-      router.push("/Login").catch(() => {});
+      router.push("/").catch(() => {});
     },
   },
 };

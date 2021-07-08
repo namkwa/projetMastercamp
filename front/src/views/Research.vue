@@ -20,13 +20,16 @@
 
     <div class="rsch">
       <div class="rsch_result">
-        <li v-if="liste[0] == undefined" class="result">Aucun résultat</li>
-        <li v-for="item in liste" :key="item.message" class="content_list">
-          {{ item.title }} : {{ item.description }}
-          <button type="button" @click="downloadResource(item.adress, false)">
-            envoyer
-          </button>
-        </li>
+        <ul class="rsch_ul">
+          <li v-if="liste[0] == undefined" class="result">Aucun résultat</li>
+          <li v-for="item in liste" :key="item.message" class="content_list" id="rsch_liste">
+            {{ item.title }} : {{ item.description }}
+            <button type="button" @click="downloadResource(item.adress, false)" id="send">
+            
+              Télécharger
+            </button>
+          </li>
+        </ul>
       </div>
       <div class="rsch_menu">
         <div class="rsch1">
@@ -269,11 +272,31 @@ export default {
 }
 
 .rsch_result {
-  display: flex;
   justify-content: center;
+  display: flex; 
   height: 100vh;
   width: 100vw;
   margin-top: 10%;
+}
+
+#rsch_liste.content_list {
+  justify-content: space-between;
+  border-bottom: 2px solid #C7C7C7;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+/*
+#rsch_liste.content_list_text{
+  justify-content: space-between;
+}*/
+
+.rsch_ul {
+  text-align: justify;
+}
+
+#send {
+  position: relative;
+  right: 0%;
 }
 
 .content_list {
@@ -284,6 +307,10 @@ export default {
 .rsch {
   display: flex;
   height: 100vh;
+}
+
+#rsch_liste {
+  display: inline-block;
 }
 
 .rsch_menu {
@@ -329,7 +356,6 @@ input[type="search"] {
   font-family: inherit;
   font-size: 100%;
 }
-
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
   display: none;
