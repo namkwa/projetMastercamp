@@ -12,7 +12,7 @@
     <button type="button" @click="chercher">Rechercher</button>
     <li v-if="liste[0] == undefined">Aucun résultat</li>
     <li v-for="item in liste" :key="item.message">
-      {{ item.title }} {{ item.description }}
+      {{ item.title }} : {{ item.description }}
       <button type="button" @click="handleClick">envoyer</button>
     </li>
     <input
