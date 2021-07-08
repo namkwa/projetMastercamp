@@ -23,9 +23,7 @@
     <div class="user_content1">
       <div class="user_content1_right">
         <div class="user_content1_right_title">Contact</div>
-        <div class="user_content1_right_mail">
-          {{ email }}<br />adcalmesni@gmail.com
-        </div>
+        <div class="user_content1_right_mail">{{ email }}<br /></div>
       </div>
       <div class="user_content1_left">
         <!-- <div class="user_content1_left_photo">
@@ -91,10 +89,10 @@ export default {
 
     const informations = infos.data.informations;
     //localStorage.setItem("token", token);
-    this.nom = informations.nom;
-    this.prenom = informations.prenom;
+    this.nom = informations.name;
+    this.prenom = informations.firstname;
     this.email = informations.email;
-    this.yearPromotion = 0;
+    this.yearPromotion = informations.yearpromotion;
   },
   data() {
     return {

@@ -6,6 +6,13 @@
         <div class="error_wrapper_content_text">
           Une erreur s'est produite, la page que<br />
           vous cherchez semble introuvable :(
+          <button
+            @click="
+              downloadResource('http://localhost:3000/pierre.png', 'pierre.png')
+            "
+          >
+            salut
+          </button>
         </div>
       </div>
     </div>
@@ -13,6 +20,35 @@
 </template>
 
 <script>
+export default {
+  methods: {
+    downloadResource(url, filename) {
+      if (!filename)
+        filename = url
+          .split("\\")
+          .pop()
+          .split("/")
+          .pop();
+      fetch(url, {
+        headers: new Headers({
+          Origin: location.origin,
+        }),
+        mode: "cors",
+      })
+        .then((response) => response.blob())
+        .then((blob) => {
+          let blobUrl = window.URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.download = filename;
+          a.href = blobUrl;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        })
+        .catch((e) => console.error(e));
+    },
+  },
+};
 </script>
 
 <style scoped>
