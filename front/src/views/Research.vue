@@ -290,7 +290,7 @@ export default {
   display: flex;
   justify-content: left;
   border-right: 2px solid #c7c7c7;
-  width: 20em;
+  width: 40em;
   height: inherit;
   flex-direction: column;
 }
@@ -329,6 +329,7 @@ input[type="search"] {
   font-family: inherit;
   font-size: 100%;
 }
+
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button {
   display: none;
