@@ -17,8 +17,8 @@
             <img id="nameLogo" src="image/efiledex_white_sized.png" /></div
         ></router-link>
         <div class="header_wrapper_logo_right">
-          <div class="header_wrapper_logo_right_door">
-            <img id="door" src="image/door.jpg" />
+          <div @click="deconnexion" class="header_wrapper_logo_right_star">
+            <img id="star" src="image/star.png" />
           </div>
           <!-- <div class="header_wrapper_logo_right_bell">
             <img id="bell" src="image/bell.png" />
@@ -37,6 +37,27 @@
 </template>
 ./components/HelloWorld.vue
 
+<script>
+import router from "./router/index.js";
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    deconnexion() {
+      localStorage.setItem("token", undefined);
+      this.goToConnexion();
+      alert("Vous êtes déconnecté !");
+    },
+    goToConnexion() {
+      router.push("/Login").catch(() => {});
+    },
+  },
+};
+</script>
 <style>
 *,
 html {

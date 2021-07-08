@@ -5,10 +5,11 @@
     <input
       type="text"
       enctype="multipart/form-data"
+      placeholder="rechercher"
       id="search"
     />
     
-    <button type="button" @click="chercher">TEST</button>
+    <button type="button" @click="chercher">Rechercher</button>
     <li v-if='liste[0] == undefined'>Aucun résultat</li>
     <li v-for="item in liste" :key="item.message">
       {{ item.document_id }} {{ item.document_text }}
