@@ -6,7 +6,7 @@
           <router-link to="/">home</router-link> |
           <router-link to="/login">login</router-link> |
           <router-link to="/create">create account</router-link> |
-          <!-- <router-link to="/error">error</router-link> | -->
+          <router-link to="/error">error</router-link> |
           <router-link to="/document">document</router-link> |
           <router-link to="/user">profil</router-link> |
         </div>
@@ -17,12 +17,12 @@
             <img id="nameLogo" src="image/efiledex_white_sized.png" /></div
         ></router-link>
         <div class="header_wrapper_logo_right">
-          <div class="header_wrapper_logo_right_star">
-            <img id="star" src="image/star.png" />
+          <div class="header_wrapper_logo_right_door">
+            <img id="door" src="image/door.jpg" />
           </div>
-          <div class="header_wrapper_logo_right_bell">
+          <!-- <div class="header_wrapper_logo_right_bell">
             <img id="bell" src="image/bell.png" />
-          </div>
+          </div> -->
         </div>
         <router-link to="/login">
           <div class="header_wrapper_logo_left">
@@ -102,10 +102,10 @@ html {
   display: flex;
 }
 
-.header_wrapper_logo_right_star {
+.header_wrapper_logo_right_door {
   display: flex;
-  height: 35px;
-  width: 35px;
+  height: 45px;
+  width: 45px;
   padding-top: 0px;
   padding-right: 25px;
 }

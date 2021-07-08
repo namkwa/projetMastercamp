@@ -43,11 +43,11 @@
     </div>
     <div class="user_content2">
       <div class="user_content2_info">
-        <div class="user_content2_info_text">
+        <!-- <div class="user_content2_info_text">
           Décrire l'utilisateur et ses projets :<br />
           -langages qu’il utilise (python, java, etc...)<br />
           -Softskills et logiciels utilisés
-        </div>
+        </div> -->
         <div class="user_content2_info_title">Informations</div>
       </div>
     </div>
@@ -85,16 +85,16 @@
 <script>
 import { me } from "../api/me.js";
 export default {
-  mounted: async function(){
+  mounted: async function () {
     var infos = await me();
     console.log(infos);
 
     const informations = infos.data.informations;
     //localStorage.setItem("token", token);
-    this.nom = informations.nom
-    this.prenom = informations.prenom
-    this.email = informations.email
-    this.yearPromotion = 0
+    this.nom = informations.nom;
+    this.prenom = informations.prenom;
+    this.email = informations.email;
+    this.yearPromotion = 0;
   },
   data() {
     return {
