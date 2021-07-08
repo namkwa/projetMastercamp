@@ -30,7 +30,7 @@
     <div class="rsch_menu">
       <div class="rsch1">
         <form id="demo-2">
-          <input type="search" placeholder="Search" />
+          <!--<input type="search" placeholder="Search" />-->
 
           <input id="search" type="search" placeholder="Search" />
           <button type="button" @click="chercher">rechercher</button>
