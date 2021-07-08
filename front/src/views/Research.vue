@@ -1,6 +1,3 @@
-
-
-
 <template>
   <div class="home">
     <div class="home_wrapper">
@@ -38,7 +35,9 @@
         <li v-if="liste[0] == undefined">Aucun résultat</li>
         <li v-for="item in liste" :key="item.message">
           {{ item.title }} : {{ item.description }}
-          <button type="button" @click="handleClick">envoyer</button>
+          <button type="button" @click="downloadResource(item.adress, false)">
+            envoyer
+          </button>
         </li>
       </div>
 
@@ -60,10 +59,6 @@
     </div>
   </div>
 </template>
-
-
-
-
 
 <script>
 var groups = {
@@ -162,14 +157,34 @@ export default {
       console.log(this.liste);
       //output.src = event.target.result;
     },
+    downloadResource(url, filename) {
+      if (!filename)
+        filename = url
+          .split("\\")
+          .pop()
+          .split("/")
+          .pop();
+      fetch(url, {
+        headers: new Headers({
+          Origin: location.origin,
+        }),
+        mode: "cors",
+      })
+        .then((response) => response.blob())
+        .then((blob) => {
+          let blobUrl = window.URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.download = filename;
+          a.href = blobUrl;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        })
+        .catch((e) => console.error(e));
+    },
   },
 };
 </script>
-
-
-
-
-
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
