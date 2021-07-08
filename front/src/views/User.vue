@@ -1,17 +1,21 @@
 <template>
   <div class="user">
-    <div class="user_wrapper">
+    <!-- <div class="user_wrapper">
       <div class="user_wrapper_rechercher">
-        <div class="user_wrapper_rechercher_logo">
+        <div @click="goToDocument()" class="user_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
         </div>
-        <div class="user_wrapper_rechercher_title">Rechercher</div>
+        <div @click="goToDocument()" class="user_wrapper_rechercher_title">
+          Rechercher
+        </div>
       </div>
       <div class="user_wrapper_partager">
-        <div class="user_wrapper_partager_logo">
+        <div @click="goToDocument()" class="user_wrapper_partager_logo">
           <img src="image/upload.png" />
         </div>
-        <div class="user_wrapper_partager_title">Partager</div>
+        <div @click="goToDocument()" class="user_wrapper_partager_title">
+          Partager
+        </div>
       </div>
       <div class="user_wrapper_projet">
         <div class="user_wrapper_projet_logo">
@@ -19,13 +23,11 @@
         </div>
         <div class="user_wrapper_projet_title">Mes Projets</div>
       </div>
-    </div>
+    </div> -->
     <div class="user_content1">
       <div class="user_content1_right">
         <div class="user_content1_right_title">Contact</div>
-        <div class="user_content1_right_mail">
-          {{ email }}<br />adcalmesni@gmail.com
-        </div>
+        <div class="user_content1_right_mail">{{ email }}<br /></div>
       </div>
       <div class="user_content1_left">
         <!-- <div class="user_content1_left_photo">
@@ -43,12 +45,12 @@
     </div>
     <div class="user_content2">
       <div class="user_content2_info">
-        <div class="user_content2_info_text">
-          Description la personne et de ses projets :<br />
-          -aussi de langages qu’iels utilisent<br />
-          -ou de ce que cette personne fait si plus à l’efrei
-        </div>
-        <div class="user_content2_info_title">Informations</div>
+        <!-- <div class="user_content2_info_text">
+          Décrire l'utilisateur et ses projets :<br />
+          -langages qu’il utilise (python, java, etc...)<br />
+          -Softskills et logiciels utilisés
+        </div> -->
+        <!-- <div class="user_content2_info_title">Informations</div> -->
       </div>
     </div>
     <div class="user_content3">
@@ -83,16 +85,40 @@
 </template>
 
 <script>
+import { me } from "../api/me.js";
+import { getProjects } from "../api/getProjects.js";
+import router from "../router/index.js";
 export default {
+  mounted: async function () {
+    /*console.log("ICIOOOOOOOOOOOOOOO");
+    console.log(localStorage.getItem("token"));*/
+    //if (localStorage.getItem("token") != undefined) {
+    var infos = await me();
+    console.log(infos);
+    var projects = await getProjects();
+    console.log(projects);
+    const informations = infos.data.informations;
+    //localStorage.setItem("token", token);
+    console.log(informations);
+    this.nom = informations.name;
+    this.prenom = informations.firstname;
+    this.email = informations.email;
+    this.yearPromotion = informations.yearpromotion;
+    //}
+  },
   data() {
     return {
-      nom: localStorage.getItem("nom"),
-      prenom: localStorage.getItem("prenom"),
-      email: localStorage.getItem("email"),
-      yearPromotion: 2023,
+      nom: "Vous n'êtes pas connecté",
+      prenom: "",
+      email: "",
+      yearPromotion: undefined,
     };
   },
-  methods: {},
+  methods: {
+    goToDocument() {
+      router.push("/Document").catch(() => {});
+    },
+  },
 };
 </script>
 

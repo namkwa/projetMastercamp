@@ -1,6 +1,19 @@
 <template>
   <div class="document">
     <h1>Envoi de documents</h1>
+
+    <input
+      type="text"
+      enctype="multipart/form-data"
+      placeholder="rechercher"
+      id="search"
+    />
+
+    <button type="button" @click="chercher">Rechercher</button>
+    <li v-if="liste[0] == undefined">Aucun résultat</li>
+    <li v-for="item in liste" :key="item.message">
+      {{ item.document_id }} {{ item.document_text }}
+    </li>
     <input
       type="file"
       enctype="multipart/form-data"
@@ -21,6 +34,8 @@
       v-model="description"
       placeholder="Description"
     />
+    <input list="years" name="years" id="browser" />
+
     <button type="button" @click="handleClick">envoyer</button>
     <iframe id="output" width="100%" height="500" frameborder="0"
       >This is an embedded</iframe
@@ -30,6 +45,7 @@
 
 <script>
 import { upload } from "../api/upload.js";
+import { research } from "../api/research.js";
 export default {
   components: {},
   data() {
@@ -37,6 +53,8 @@ export default {
       SelectedFile: null,
       title: "",
       description: "",
+      liste: [],
+      promotion: "",
     };
   },
   methods: {
@@ -58,7 +76,21 @@ export default {
         file: this.SelectedFile,
         title: this.title,
         description: this.description,
+        promotion: this.promotion,
       });
+    },
+
+    async chercher() {
+      //console.log("front")
+      var search = document
+        .getElementById("search")
+        .value.replaceAll(" ", " | ");
+      //console.log(search);
+      var res = await research({
+        string: search,
+      });
+      this.liste = res.data.informations;
+      console.log(this.liste[0]);
     },
   },
 };
