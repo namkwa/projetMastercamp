@@ -69,7 +69,7 @@ const upload = async (req, res) => {
     type: file.mimetype,
     description: desc,
     promotion: promotion,
-    ts_vector: desc
+    ts_vector: desc,
   }).save();
 
   //await Documents.set("promotion", "do");
@@ -122,7 +122,6 @@ const research = async (req, res) => {
     "@@",
     arg
   ).fetchAll();
-  console.log(student.data);
   res.status(200).json({ informations: student });
   //console.log(student)
 };
