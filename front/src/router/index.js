@@ -32,6 +32,11 @@ const routes = [
     name: 'User',
     component: () => import('../views/User.vue')
   },
+  {
+    path: '/research',
+    name: 'Research',
+    component: () => import('../views/Research.vue')
+  }
 ]
 
 const router = createRouter({
