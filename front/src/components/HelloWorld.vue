@@ -1,12 +1,14 @@
 <template>
   <div class="home">
     <div class="home_wrapper">
-      <div class="home_wrapper_rechercher">
-        <div class="home_wrapper_rechercher_logo">
-          <img src="image/loupe.png" />
-        </div>
-        <div class="home_wrapper_rechercher_title">Rechercher</div>
-      </div>
+      <a href="/document" class="path_doc">
+        <div class="home_wrapper_rechercher">
+          <div class="home_wrapper_rechercher_logo">
+            <img src="image/loupe.png" />
+          </div>
+          <div class="home_wrapper_rechercher_title">Rechercher</div>
+        </div></a
+      >
       <a href="/document" class="path_doc">
         <div class="home_wrapper_partager">
           <div class="home_wrapper_partager_logo">
