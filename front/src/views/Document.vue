@@ -1,19 +1,20 @@
 <template>
   <div class="document">
-    <h1>Envoi de documents</h1>
-    
     <input
       type="text"
       enctype="multipart/form-data"
       placeholder="rechercher"
       id="search"
     />
-    
+
     <button type="button" @click="chercher">Rechercher</button>
-    <li v-if='liste[0] == undefined'>Aucun résultat</li>
-    <li v-for="item in liste" :key="item.message">
+
+    <li v-if="liste[0] == undefined" id="list">Aucun résultat</li>
+    <li v-for="item in liste" :key="item.message" id="list">
       {{ item.document_id }} {{ item.document_text }}
     </li>
+    <h1>Envoi de documents</h1>
+
     <input
       type="file"
       enctype="multipart/form-data"
@@ -34,13 +35,13 @@
       v-model="description"
       placeholder="Description"
     />
-    <input list="years" name="years" id="browser" />
+    <input list="years" name="years" id="browser" placeholder="Promotion" />
     <datalist id="browsers">
-      <option value="Edge"> </option>
-      <option value="Firefox"> </option>
-      <option value="Chrome"> </option>
-      <option value="Opera"> </option>
-      <option value="Safari"> </option>
+      <option value="Edge"></option>
+      <option value="Firefox"></option>
+      <option value="Chrome"></option>
+      <option value="Opera"></option>
+      <option value="Safari"></option>
     </datalist>
 
     <button type="button" @click="handleClick">envoyer</button>
@@ -48,7 +49,6 @@
       >This is an embedded</iframe
     >
   </div>
-
 </template>
 
 <script>
@@ -61,7 +61,7 @@ export default {
       SelectedFile: null,
       title: "",
       description: "",
-      liste: []
+      liste: [],
     };
   },
   methods: {
@@ -88,10 +88,12 @@ export default {
 
     async chercher() {
       //console.log("front")
-      var search = (document.getElementById("search").value).replaceAll(" ", " | ");
+      var search = document
+        .getElementById("search")
+        .value.replaceAll(" ", " | ");
       //console.log(search);
       var res = await research({
-        string: search
+        string: search,
       });
       this.liste = res.data.informations;
       console.log(this.liste[0]);
@@ -108,8 +110,12 @@ export default {
 
 h1 {
   color: #757575;
-  margin-top: 150px;
+  margin-top: 130px;
   margin-bottom: 50px;
   font-size: 3em;
+}
+
+#list {
+  margin-top: 30px;
 }
 </style>

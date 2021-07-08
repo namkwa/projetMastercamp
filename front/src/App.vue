@@ -17,8 +17,8 @@
             <img id="nameLogo" src="image/efiledex_white_sized.png" /></div
         ></router-link>
         <div class="header_wrapper_logo_right">
-          <div @click="deconnexion" class="header_wrapper_logo_right_star">
-            <img id="star" src="image/star.png" />
+          <div @click="deconnexion" class="header_wrapper_logo_right_door">
+            <img id="door" src="image/door.jpg" />
           </div>
           <!-- <div class="header_wrapper_logo_right_bell">
             <img id="bell" src="image/bell.png" />
