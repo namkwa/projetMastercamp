@@ -1,12 +1,6 @@
 <template>
   <div class="home">
     <div class="home_wrapper">
-      <!-- <div class="home_wrapper_rechercher">
-        <div class="home_wrapper_rechercher_logo">
-          <img src="image/loupe.png" />
-        </div>
-        <div class="home_wrapper_rechercher_title">Rechercher</div>
-      </div> -->
       <a href="/document" class="path">
         <div class="home_wrapper_partager">
           <div class="home_wrapper_partager_logo">
@@ -44,24 +38,12 @@
           </form>
         </div>
 
-<<<<<<< HEAD
-    
-      <div class="container">
-        <div v-for="(group, name) in groups" :key="name">
-         <a @click="group.open = !group.open" class="titlegroup"> {{ group.name }} </a>
-           <ul v-show="group.open" class="list">
-           <li v-for="item in group.items" :key="item">
-             <input class="box" type="checkbox"><label class="enum"> {{ item }} </label> 
-           </li>
-          </ul>
-          <hr>
-=======
         <div class="container">
           <div v-for="(group, name) in groups" :key="name">
             <a @click="group.open = !group.open" class="titlegroup">
               {{ group.name }}
             </a>
-            <ul v-show="group.open" id="langage">
+            <ul v-show="group.open" class="list">
               <li v-for="item in group.items" :key="item">
                 <input class="box" type="checkbox" /><label class="enum">
                   {{ item }}
@@ -70,7 +52,6 @@
             </ul>
             <hr />
           </div>
->>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
         </div>
       </div>
     </div>
@@ -112,17 +93,9 @@ var groups = {
     ],
   },
   "GROUP B": {
-<<<<<<< HEAD
-    "name": "Langage Informatique",
-    "open": false,
-    "items": [
-      "Angular",
-      "Assembly",
-=======
     name: "Langage Informatique",
     open: false,
     items: [
->>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
       "C",
       "C++",
       "C#",
@@ -298,7 +271,6 @@ export default {
 .rsch_result {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   height: 100vh;
   width: 100vw;
   margin-top: 10%;
@@ -315,22 +287,12 @@ export default {
 }
 
 .rsch_menu {
-<<<<<<< HEAD
-    display: flex;
-    justify-content: left;
-    border-right : 2px solid #C7C7C7;
-    width: 20em;
-    height:inherit;
-    flex-direction: column;
-=======
   display: flex;
   justify-content: left;
   border-right: 2px solid #c7c7c7;
-  width: 40em;
+  width: 20em;
   height: inherit;
   flex-direction: column;
-  overflow: scroll;
->>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
 }
 
 .rsch_menu > div {
@@ -338,12 +300,7 @@ export default {
 }
 
 .rsch1 {
-<<<<<<< HEAD
-  order : 1;
-  
-=======
   order: 1;
->>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
 }
 
 #btn_rsch {
@@ -436,7 +393,7 @@ input::-webkit-input-placeholder {
 
 .container {
   order: 2;
-  overflow : auto;
+  overflow: auto;
 }
 
 .titlegroup {
@@ -446,11 +403,7 @@ input::-webkit-input-placeholder {
   color: #757575;
 }
 
-<<<<<<< HEAD
-.list{
-=======
-#langage {
->>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
+.list {
   text-align: justify;
   /* text-align: center; */
 }
