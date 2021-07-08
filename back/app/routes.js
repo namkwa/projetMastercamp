@@ -6,7 +6,7 @@ const routes = (app) => {
   app.post("/login", apiController.login);
   app.post("/register", apiController.register);
   app.get("/me", apiController.me);
-  app.get("/getProjects", apiController.me);
+  app.get("/getProjects", apiController.getProjects);
   app.post("/upload", apiController.upload);
   app.get("/research", apiController.research);
 };

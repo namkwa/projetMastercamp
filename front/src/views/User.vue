@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <!-- <div class="user_wrapper">
+     <div class="user_wrapper">
       <div class="user_wrapper_rechercher">
         <div @click="goToDocument()" class="user_wrapper_rechercher_logo">
           <img src="image/loupe.png" />
@@ -17,13 +17,13 @@
           Partager
         </div>
       </div>
-      <div class="user_wrapper_projet">
+      <!--<div class="user_wrapper_projet">
         <div class="user_wrapper_projet_logo">
           <img src="image/myprojects.png" />
         </div>
         <div class="user_wrapper_projet_title">Mes Projets</div>
-      </div>
-    </div> -->
+      </div>-->
+    </div> 
     <div class="user_content1">
       <div class="user_content1_right">
         <div class="user_content1_right_title">Contact</div>
@@ -56,7 +56,11 @@
     <div class="user_content3">
       <div class="user_content3_projet">
         <div class="user_content3_projet_title">Mes projets</div>
-        <div class="user_content3_projet_list">
+        <li v-if="liste[0] == undefined">Aucun résultat</li>
+        <li v-for="item in liste" :key="item.message">
+          {{ item.title }} {{ item.description }}
+        </li>
+        <!--<div class="user_content3_projet_list">
           <div class="user_content3_projet_list_1">
             <div class="user_content3_projet_list_1_image">
               <img src="image/LOGO3.png" />
@@ -78,7 +82,7 @@
             <div class="user_content3_projet_list_3_name">Efrei Game</div>
             <div class="user_content3_projet_list_3_techno">Vue.js</div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -94,12 +98,13 @@ export default {
     console.log(localStorage.getItem("token"));*/
     //if (localStorage.getItem("token") != undefined) {
     var infos = await me();
-    console.log(infos);
+    //console.log(infos);
     var projects = await getProjects();
-    console.log(projects);
+    this.liste = projects.data.informations;
+
     const informations = infos.data.informations;
     //localStorage.setItem("token", token);
-    console.log(informations);
+    //console.log(informations);
     this.nom = informations.name;
     this.prenom = informations.firstname;
     this.email = informations.email;
@@ -112,6 +117,7 @@ export default {
       prenom: "",
       email: "",
       yearPromotion: undefined,
+      liste: []
     };
   },
   methods: {
