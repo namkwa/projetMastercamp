@@ -39,7 +39,9 @@
         <div class="rsch1">
           <form id="demo-2">
             <input id="search" type="search" placeholder="Search" />
-            <button type="button" @click="chercher">rechercher</button>
+            <button type="button" @click="chercher" id="btn_rsch">
+              rechercher
+            </button>
           </form>
         </div>
 
@@ -277,7 +279,7 @@ export default {
   display: flex;
   justify-content: left;
   border-right: 2px solid #c7c7c7;
-  width: 20em;
+  width: 40em;
   height: inherit;
   flex-direction: column;
   overflow: scroll;
@@ -289,6 +291,22 @@ export default {
 
 .rsch1 {
   order: 1;
+}
+
+#btn_rsch {
+  background-color: #0e3b5a;
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  margin-left: 12px;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 /* Barre recherche déroulante */
