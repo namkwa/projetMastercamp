@@ -44,6 +44,18 @@
           </form>
         </div>
 
+<<<<<<< HEAD
+    
+      <div class="container">
+        <div v-for="(group, name) in groups" :key="name">
+         <a @click="group.open = !group.open" class="titlegroup"> {{ group.name }} </a>
+           <ul v-show="group.open" class="list">
+           <li v-for="item in group.items" :key="item">
+             <input class="box" type="checkbox"><label class="enum"> {{ item }} </label> 
+           </li>
+          </ul>
+          <hr>
+=======
         <div class="container">
           <div v-for="(group, name) in groups" :key="name">
             <a @click="group.open = !group.open" class="titlegroup">
@@ -58,6 +70,7 @@
             </ul>
             <hr />
           </div>
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
         </div>
       </div>
     </div>
@@ -99,19 +112,30 @@ var groups = {
     ],
   },
   "GROUP B": {
+<<<<<<< HEAD
+    "name": "Langage Informatique",
+    "open": false,
+    "items": [
+      "Angular",
+      "Assembly",
+=======
     name: "Langage Informatique",
     open: false,
     items: [
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
       "C",
       "C++",
       "C#",
       "HTML/CSS",
+      "MatLab",
       "Python",
       "PHP",
       "Java",
       "JavaScript",
+      "Express.js",
+      "Node.js",
+      "TypeScript",
       "Vue.js",
-      "React.js",
       "Ruby",
       "UML",
       "Unity",
@@ -291,6 +315,14 @@ export default {
 }
 
 .rsch_menu {
+<<<<<<< HEAD
+    display: flex;
+    justify-content: left;
+    border-right : 2px solid #C7C7C7;
+    width: 20em;
+    height:inherit;
+    flex-direction: column;
+=======
   display: flex;
   justify-content: left;
   border-right: 2px solid #c7c7c7;
@@ -298,6 +330,7 @@ export default {
   height: inherit;
   flex-direction: column;
   overflow: scroll;
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
 }
 
 .rsch_menu > div {
@@ -305,7 +338,12 @@ export default {
 }
 
 .rsch1 {
+<<<<<<< HEAD
+  order : 1;
+  
+=======
   order: 1;
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
 }
 
 #btn_rsch {
@@ -398,6 +436,7 @@ input::-webkit-input-placeholder {
 
 .container {
   order: 2;
+  overflow : auto;
 }
 
 .titlegroup {
@@ -407,7 +446,11 @@ input::-webkit-input-placeholder {
   color: #757575;
 }
 
+<<<<<<< HEAD
+.list{
+=======
 #langage {
+>>>>>>> c60fc091a1c9e5c0358fdfcf77ad1a4f49616c49
   text-align: justify;
   /* text-align: center; */
 }
