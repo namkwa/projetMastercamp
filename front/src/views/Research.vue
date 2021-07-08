@@ -34,16 +34,16 @@
       </div>
 
     
-      <div v-for="accordion in accordions" :key="accordion.title" class="accord">
-        <BaseAccordian>
-          <template v-slot:title>{{ accordion.title }}</template>
-
-          <template v-slot:content >
-            <input type="checkbox" class="check">
-            <label v-bind:id="accordion.content.id">{{ accordion.value }}</label>
-          </template>
-
-        </BaseAccordian>
+      <div class="container">
+        <div v-for="(group, name) in groups" :key="name">
+         <a @click="group.open = !group.open" class="titlegroup"> {{ group.name }} </a>
+           <ul v-show="group.open">
+           <li v-for="item in group.items" :key="item">
+             <input class="box" type="checkbox"><label class="enum"> {{ item }} </label> 
+           </li>
+          </ul>
+          <hr>
+        </div>
       </div>
 
     </div>
@@ -58,45 +58,91 @@
 
 <script>
 
-import BaseAccordian from "@/components/BaseAccordion";
+var groups = {
+  "GROUP A": {
+    "name": "Prépas et majeurs",
+    "open": false,
+    "items": [
 
+      "L1 BioNumérique",
+      "L1 Classique",
+      "L1 Inter",
+      "L1 Renforcée",
+      "L1 Rentrée Décalée",
+      "L2 BioNumérique",
+      "L2 Classique",
+      "L2 Inter",
+      "L1 Renforcée",
+      "L3 BioNumérique",
+      "L3 Classique",
+      "L3 Inter",
+      "L3 New",
+      "Software Engineering",
+      "Business Intelligence and Analytics",
+      "Digital Transformation",
+      "Cybersécurité SI et Gouvernance",
+      "Cybersécurité infrastructure et logiciels",
+      "Big Data and Machine Learning",
+      "Network & Cloud Infrastructure",
+      "IT for Finance",
+      "Bio-informatique",
+      "Systèmes robotiques & Drones",
+      "Transports intelligents",
+      "Imagerie et Réalité Virtuelle",
+      "Energie & Smart Grids"
+
+    ]
+  },
+  "GROUP B": {
+    "name": "Langage Informatique",
+    "open": false,
+    "items": [
+      "C",
+      "C++",
+      "C#",
+      "HTML/CSS",
+      "Python",
+      "PHP",
+      "Java",
+      "JavaScript",
+      "Vue.js",
+      "React.js",
+      "Ruby",
+      "UML",
+      "Unity",
+      "SQL",
+      "Swift"
+    ]
+  },
+  "GROUP C": {
+    "name": "Année de réalisation",
+    "open": false,
+    "items": [
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+    ]
+  },
+
+}
 
 export default {
-  components: {
-    BaseAccordian
-  },
   data() {
-    return {
-      accordions: [
-        {
-          title: "Prépa et majeurs",
-          content: [
-          {
-            id:"l3new",
-            value: "L3 New"
-          },
-          {
-            id:"l1inter",
-            value: "L1 Inter"
-          },
-          ]
-        },
-        {
-          title: "Année d’étude",
-          text: "All about Nuxt"
-        },
-        {
-          title: "Langage de code",
-          text: "All about webpack"
-        },
-        {
-          title: "Année réalisation",
-          text: "All about Nuxt"
-        }
-      ]
-    };
+    return{
+      groups: groups
+      }
   }
-};
+  
+}
 
 </script>
 
@@ -106,6 +152,9 @@ export default {
 
 
 <style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 .home {
   /* display: flex;
   justify-content: flex-start;
@@ -185,14 +234,13 @@ export default {
 }
 
 .rsch_menu {
-    background: #af2c2c;
     display: flex;
-    position: left;
+    justify-content: left;
     border-right : 2px solid #C7C7C7;
     width: 20em;
     height:inherit;
     flex-direction: column;
-    overflow: auto;
+    overflow:scroll;
 }
 
 .rsch_menu > div {
@@ -278,17 +326,26 @@ input::-webkit-input-placeholder {
 /* FIN barre recherche déroulante */
 
 
-.accord {
-  order:2;
+
+
+.container{
+  order: 2;
 }
 
-#l3new {
-  color : blanchedalmond;
-  margin-left: 1%;
+.titlegroup {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.8em;
+  justify-content: left;
+  color : #757575;
 }
+
+.enum {
+  font-family: 'Roboto', sans-serif;
+  justify-content: left;
+  color : #757575;
+  margin: 0.3em;
+}
+
 
 
 </style>
-
-
-

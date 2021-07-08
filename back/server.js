@@ -3,10 +3,20 @@
 import express from "express";
 import morgan from "morgan";
 import { routes as routes } from "./app/routes.js";
+import cors from "cors";
+import fileUpload from "express-fileupload";
 
 const app = express();
 
+app.use(
+  fileUpload({
+    createParentPath: true,
+  })
+);
+
 app.use(morgan("dev"));
+
+app.use(cors());
 
 app.use(express.json());
 

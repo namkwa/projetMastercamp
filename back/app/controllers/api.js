@@ -1,6 +1,6 @@
 "use strict";
 
-import { Student } from "../models.js";
+import { Documents, Student } from "../models.js";
 import bcrypt from "bcrypt";
 import Bookshelf from "bookshelf";
 import jwt from "jsonwebtoken";
@@ -22,19 +22,18 @@ const test = async (req, res) => {
 };
 
 const test2 = async (req, res) => {
-  const student = await Student.count();
+  const student = await Student.fetchAll();
   res.json(student);
 };
 
 //Requête de connexion
-const connection = async (req, res) => {
+const login = async (req, res) => {
   const request = await Student.where("email", req.body.email).fetch();
   const passwordIsValid = await bcrypt.compare(
     req.body.password,
     request.attributes.password
   );
-  if (!passwordIsValid)
-    return res.status(401).send({ auth: false, token: null });
+  if (!passwordIsValid) return res.status(401).send(null);
 
   const token = jwt.sign(
     { id: request.attributes.idetudiant },
@@ -44,24 +43,68 @@ const connection = async (req, res) => {
     }
   );
 
-  res.status(200).send({ auth: true, token: token });
+  res.status(200).send(token);
 };
 
 //Requête de création de compte
-const createAccount = async (req, res) => {
+const register = async (req, res) => {
   const nom = req.body.nom;
   const prenom = req.body.prenom;
   const email = req.body.email;
   const password = await bcrypt.hash(req.body.password, 10);
   const login = req.body.login;
-  const student = await new Student({
-    nom,
-    prenom,
-    email,
-    password,
-    login,
-  }).save();
-  res.json(student);
+
+  const request = await Student.where("email", req.body.email).fetch({
+    require: false,
+  }); //{ require: false } ne sert probablement à rien
+  if (request == null) {
+    const student = await new Student({
+      nom,
+      prenom,
+      email,
+      password,
+      login,
+    }).save();
+    console.log("terminé !");
+    res.json({ message: "ok" });
+  } else {
+    res.json({ message: "Error" });
+  }
 };
 
-export default { base, connection, createAccount, test, test2 };
+const upload = async (req, res) => {
+  const token = req.headers.authorization;
+  const file = req.files.file;
+  const title = req.body.title;
+  const desc = req.body.description;
+  const etat = "fini";
+  const relativeAdress = "./app/uploads/" + file.name;
+  const verif = authenticate(token, res);
+  file.mv(relativeAdress);
+  await new Documents({
+    titredoc: title,
+    adresse: relativeAdress,
+    etatdoc: etat,
+    typedoc: desc,
+  }).save();
+
+  res.status(200);
+};
+
+const me = async (req, res) => {
+  const token = req.headers.authorization;
+  const verif = authenticate(token, res);
+  const id = verif.id;
+  const student = await new Student.where("id", id).fetch();
+};
+
+async function authenticate(jwt, res) {
+  try {
+    const verif = await jwt.verify(token, "trestressecret");
+    return verif;
+  } catch (err) {
+    res.status(401);
+  }
+}
+
+export default { base, register, test, test2, upload, login };

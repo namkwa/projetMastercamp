@@ -10,13 +10,21 @@
             placeholder="email@efrei.net"
             required
             pattern="[a-z0-9._%+-]+@efrei+.[a-z]{2,4}$"
+            v-model="email"
           />
         </div>
         <div class="login_wrapper_password">
-          <input type="password" id="pwd" placeholder="Mot de passe" />
+          <input
+            type="password"
+            id="pwd"
+            placeholder="Mot de passe"
+            v-model="password"
+          />
         </div>
         <div class="login_wrapper_button">
-          <button class="button_connexion" type="button">Connexion</button>
+          <button class="button_connexion" type="button" @click="handleClick()">
+            Connexion
+          </button>
           <router-link to="/create" id="create_route"
             ><p>Par encore de compte ? C'est par ici !</p></router-link
           >
@@ -27,6 +35,22 @@
 </template>
 
 <script>
+import { login } from "../api/login.js";
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    async handleClick() {
+      var token = await login({ email: this.email, password: this.password });
+      localStorage.setItem("token", token.data);
+      console.log(token);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -118,4 +142,3 @@ p:hover {
   text-decoration: none;
 }
 </style>
-

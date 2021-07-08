@@ -1,12 +1,12 @@
 "use strict";
 
-import api from "./controllers/api.js";
 import apiController from "./controllers/api.js";
 
 const routes = (app) => {
   app.get("/api", apiController.base);
-  app.post("/connect", apiController.connection);
-  app.post("/register", apiController.createAccount);
+  app.post("/login", apiController.login);
+  app.post("/register", apiController.register);
+  app.post("/upload", apiController.upload);
   app.post("/test", apiController.test);
   app.get("/test2", apiController.test2);
 };
