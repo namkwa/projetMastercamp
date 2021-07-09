@@ -17,12 +17,6 @@
           Partager
         </div>
       </div>
-      <!--<div class="user_wrapper_projet">
-        <div class="user_wrapper_projet_logo">
-          <img src="image/myprojects.png" />
-        </div>
-        <div class="user_wrapper_projet_title">Mes Projets</div>
-      </div>-->
     </div>
     <div class="user_content1">
       <div class="user_content1_right">
@@ -30,11 +24,6 @@
         <div class="user_content1_right_mail">{{ email }}<br /></div>
       </div>
       <div class="user_content1_left">
-        <!-- <div class="user_content1_left_photo">
-          <img
-            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-with-glasses.jpg"
-          />
-        </div> -->
         <div class="user_content1_left_desc">
           <h2>{{ nom }} {{ prenom }}</h2>
           <br />
@@ -45,12 +34,6 @@
     </div>
     <div class="user_content2">
       <div class="user_content2_info">
-        <!-- <div class="user_content2_info_text">
-          Décrire l'utilisateur et ses projets :<br />
-          -langages qu’il utilise (python, java, etc...)<br />
-          -Softskills et logiciels utilisés
-        </div> -->
-        <!-- <div class="user_content2_info_title">Informations</div> -->
       </div>
     </div>
     <div class="user_content3">
@@ -62,29 +45,6 @@
             {{ item.title }} {{ item.description }}
           </li>
         </ul>
-        <!--<div class="user_content3_projet_list">
-          <div class="user_content3_projet_list_1">
-            <div class="user_content3_projet_list_1_image">
-              <img src="image/LOGO3.png" />
-            </div>
-            <div class="user_content3_projet_list_1_name">eFileDex</div>
-            <div class="user_content3_projet_list_1_techno">HTML/CSS</div>
-          </div>
-          <div class="user_content3_projet_list_2">
-            <div class="user_content3_projet_list_2_image">
-              <img src="https://img.icons8.com/color/452/c-programming.png" />
-            </div>
-            <div class="user_content3_projet_list_2_name">Projet pendu</div>
-            <div class="user_content3_projet_list_2_techno">C</div>
-          </div>
-          <div class="user_content3_projet_list_3">
-            <div class="user_content3_projet_list_3_image">
-              <img src="image/vuelogo.png" />
-            </div>
-            <div class="user_content3_projet_list_3_name">Efrei Game</div>
-            <div class="user_content3_projet_list_3_techno">Vue.js</div>
-          </div>
-        </div>-->
       </div>
     </div>
   </div>
@@ -96,22 +56,15 @@ import { getProjects } from "../api/getProjects.js";
 import router from "../router/index.js";
 export default {
   mounted: async function () {
-    /*console.log("ICIOOOOOOOOOOOOOOO");
-    console.log(localStorage.getItem("token"));*/
-    //if (localStorage.getItem("token") != undefined) {
     var infos = await me();
-    //console.log(infos);
     var projects = await getProjects();
     this.liste = projects.data.informations;
 
     const informations = infos.data.informations;
-    //localStorage.setItem("token", token);
-    //console.log(informations);
     this.nom = informations.name;
     this.prenom = informations.firstname;
     this.email = informations.email;
     this.yearPromotion = informations.yearpromotion;
-    //}
   },
   data() {
     return {
@@ -137,10 +90,6 @@ export default {
 
 <style scoped>
 .user {
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;  */
-  /* flex-direction: column-reverse; */
   width: 100vw;
   height: 80vh;
 }
@@ -229,7 +178,6 @@ export default {
   align-items: center;
   flex-direction: row-reverse;
   width: 500px;
-  /* padding-right: 30px; */
 }
 
 .user_content1_left_photo {
@@ -320,8 +268,6 @@ h3 {
   width: 100vw;
 }
 
-/* .user_content3_projet {
-} */
 
 .user_content3_projet_title {
   display: flex;
@@ -339,7 +285,6 @@ h3 {
   justify-content: space-around;
   align-items: center;
   width: 50%;
-  /* flex-direction: column; */
 }
 
 .user_content3_projet_list_1_image {
@@ -368,11 +313,6 @@ h3 {
   font-size: 1em;
 }
 
-/* .user_content3_projet_list_3 {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-} */
 
 .user_content3_projet_list_3_image {
   display: flex;

@@ -148,18 +148,13 @@ export default {
   },
   methods: {
     async chercher() {
-      //console.log("front")
       var search = document
         .getElementById("search")
         .value.replaceAll(" ", " | ");
-      //console.log(search);
       var res = await research({
         string: search,
       });
       this.liste = res.data.informations;
-      console.log("LISTE : ");
-      console.log(this.liste);
-      //output.src = event.target.result;
     },
     downloadResource(url, filename) {
       if (!filename) filename = url.split("\\").pop().split("/").pop();
@@ -189,10 +184,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
 .home {
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;  */
-  /* flex-direction: column-reverse; */
   width: 100vw;
   height: 80vh;
 }
@@ -285,10 +276,6 @@ export default {
   padding-bottom: 5px;
   padding-top: 10px;
 }
-/*
-#rsch_liste.content_list_text{
-  justify-content: space-between;
-}*/
 
 .rsch_ul {
   text-align: justify;
@@ -330,7 +317,7 @@ export default {
   order: 1;
 }
 
-#btn_rsch {
+#btn_rsch, #send {
   background-color: #0e3b5a;
   border: none;
   color: white;
@@ -432,7 +419,6 @@ input::-webkit-input-placeholder {
 
 .list {
   text-align: justify;
-  /* text-align: center; */
 }
 
 .enum {

@@ -48,7 +48,6 @@ export default {
     async handleClick() {
       var token = await login({ email: this.email, password: this.password });
       localStorage.setItem("token", token.data);
-      console.log(token);
       this.goToUser();
     },
     goToUser() {
@@ -73,7 +72,6 @@ export default {
   flex-direction: column-reverse;
   height: 500px;
   width: 500px;
-  /* background: beige; */
 }
 
 .login_wrapper_title {

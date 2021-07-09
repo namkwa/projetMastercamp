@@ -6,7 +6,6 @@ async function upload(documentInfo) {
   formData.append("file", documentInfo.file);
   formData.append("description", documentInfo.description);
   formData.append("promotion", documentInfo.promotion);
-  console.log(localStorage.getItem("token"));
   const res = await axios.post("http://localhost:3000/upload", formData, {
     headers: {
       Authorization: localStorage.getItem("token"),

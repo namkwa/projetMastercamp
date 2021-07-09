@@ -35,7 +35,7 @@ const register = async (req, res) => {
 
   const request = await Student.where("email", req.body.email).fetch({
     require: false,
-  }); //{ require: false } ne sert probablement à rien
+  });
   if (request == null) {
     const student = await new Student({
       name,
@@ -44,7 +44,6 @@ const register = async (req, res) => {
       password,
       yearpromotion,
     }).save();
-    console.log("terminé !");
     res.json({ message: "ok" });
   } else {
     res.json({ message: "Error" });
@@ -59,7 +58,6 @@ const upload = async (req, res) => {
   const promotion = req.body.promotion;
   const Adress = "http://localhost:3000/" + file.name;
   const verif = await authenticate(token, res);
-  console.log(promotion);
   file.mv("./app/uploads/" + file.name);
   await new Documents({
     idauthor: verif.id,
@@ -72,30 +70,22 @@ const upload = async (req, res) => {
     ts_vector: desc,
   }).save();
 
-  //await Documents.set("promotion", "do");
   res.status(200);
 };
 
 const me = async (req, res) => {
   const token = req.headers.authorization;
-  //console.log(res);
   const verif = await authenticate(token, res);
-  console.log(token);
   const id = verif.id;
-  console.log(verif);
   const student = await Student.where("idstudent", id).fetch();
   res.status(200).json({ informations: student.attributes });
 };
 
 const getProjects = async (req, res) => {
   const token = req.headers.authorization;
-  //console.log(res);
   const verif = await authenticate(token, res);
-  console.log("TOKEN");
   const id = verif.id;
-  console.log(verif);
   const docs = await Documents.where("idauthor", id).fetchAll();
-  console.log(docs);
   res.status(200).json({ informations: docs });
 };
 
@@ -110,20 +100,14 @@ async function authenticate(token, res) {
 
 const research = async (req, res) => {
   const token = req.headers.authorization;
-  /*console.log("DEBUT");
-  console.log(req.headers.argument);*/
   const arg = req.headers.argument;
-  const verif = await authenticate(token, res);
-  //const student = await Student.where("idetudiant", id).fetch();
-  //const student = await Test.where('document_tokens', '@@', "jump").fetch();//"to_tsvector(document_text) @@ to_tsquery(\'jump & quick\')"
-  const student = await Documents.query(
+  const verif = await authenticate(token, res);  const student = await Documents.query(
     "where",
     "ts_vector",
     "@@",
     arg
   ).fetchAll();
   res.status(200).json({ informations: student });
-  //console.log(student)
 };
 
 export default {

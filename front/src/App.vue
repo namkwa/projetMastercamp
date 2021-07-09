@@ -21,9 +21,6 @@
           <div @click="deconnexion" class="header_wrapper_logo_right_door">
             <img id="door" src="image/door.jpg" />
           </div>
-          <!-- <div class="header_wrapper_logo_right_bell">
-            <img id="bell" src="image/bell.png" />
-          </div> -->
         </div>
         <router-link to="/">
           <div class="header_wrapper_logo_left">

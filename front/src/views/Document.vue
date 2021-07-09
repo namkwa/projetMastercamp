@@ -9,13 +9,6 @@
           <div class="document_wrapper_rechercher_title">Rechercher</div>
         </div></a
       >
-      <!-- <a href="/document" class="path">
-        <div class="document_wrapper_partager">
-          <div class="document_wrapper_partager_logo">
-            <img src="image/upload.png" />
-          </div>
-          <div class="document_wrapper_partager_title">Partager</div>
-        </div></a> -->
       <a href="/user" class="path">
         <div class="document_wrapper_projet">
           <div class="document_wrapper_projet_logo">
@@ -25,20 +18,6 @@
         </div></a
       >
     </div>
-<!--
-    <input
-      type="text"
-      enctype="multipart/form-data"
-      placeholder="Rechercher"
-      id="search"
-    />
-
-    <button type="button" @click="chercher">Rechercher</button>
-    <li v-if="liste[0] == undefined" id="no-result">Aucun résultat</li>
-    <li v-for="item in liste" :key="item.message">
-      {{ item.title }} : {{ item.description }}
-      <button type="button" @click="handleClick">envoyer</button>
-    </li>-->
     <h1>Envoi de documents</h1>
 
     <input
@@ -64,7 +43,7 @@
     <input
       type="text"
       id="promotion"
-      placeholder="Promotion"
+      placeholder="Année de réalisation"
       v-model="promotion"
     />
 
@@ -95,7 +74,6 @@ export default {
       const output = document.getElementById("output");
       const selected_file = inputElement;
       this.SelectedFile = selected_file;
-      //console.log(selected_file);
 
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
@@ -113,18 +91,13 @@ export default {
     },
 
     async chercher() {
-      //console.log("front")
       var search = document
         .getElementById("search")
         .value.replaceAll(" ", " | ");
-      //console.log(search);
       var res = await research({
         string: search,
       });
       this.liste = res.data.informations;
-      console.log("LISTE : ");
-      console.log(this.liste);
-      //output.src = event.target.result;
     },
   },
 };

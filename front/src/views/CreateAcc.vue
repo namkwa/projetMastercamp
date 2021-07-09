@@ -33,15 +33,6 @@
           />
           <input type="text" id="fname" placeholder="Prénom" v-model="prenom" />
         </div>
-        <!--<div class="create_wrapper_checkbox">
-          <label class="container">Déjà diplomé.e ?</label>
-          <input
-            type="checkbox"
-            name="Diplome"
-            id="graduated"
-            v-model="diplome"
-          />
-        </div>-->
         <div class="create_wrapper_year">
           <div class="create_wrapper_year_sub">
             <button class="button_creation" type="button" @click="Account">
@@ -92,7 +83,6 @@ export default {
         });
 
         if (res.data.message == "ok") {
-          console.log("Le compte a été créé avec succès!");
           var token = await login({ email: this.email, password: this.password });
           localStorage.setItem("token", token.data);
           this.goToUser();

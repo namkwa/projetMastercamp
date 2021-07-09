@@ -26,15 +26,6 @@
       >
     </div>
     <div class="home_content1">
-      <!--<div class="home_content1_echange">
-        <div class="home_content1_echange_logo">
-          <img id="echangeLogo" src="image/echange.png" />
-        </div>
-        <div class="home_content1_echange_title">
-          Entrez en contact avec<br />
-          les créateur d’anciens projets
-        </div>
-      </div>-->
       <a href="/research" class="path">
         <div class="home_content1_search">
           <div class="home_content1_search_logo">
@@ -76,10 +67,6 @@ export default {
 
 <style scoped>
 .home {
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;  */
-  /* flex-direction: column-reverse; */
   width: 100vw;
   height: 80vh;
 }
@@ -182,12 +169,5 @@ export default {
   color: #081f2f;
 }
 
-/* @media screen and (max-width: 600px) {
-  .home_content1 {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-} */
 </style>
 

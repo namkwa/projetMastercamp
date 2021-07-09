@@ -6,9 +6,8 @@ import bookshelf from "bookshelf";
 const opts = {
   host: "127.0.0.1",
   user: "postgres",
-  password: "hugo1507",
-  database: "efile",
-  charset: "utf8",
+  password: "",//AJOUTER LE MOT DE PASSE DE LA BASE DE DONNÉES
+  database: "",//AJOUTER LE NOM DE LA BASE DE DONNÉES
   debug: true,
   port: 5432,
 };
