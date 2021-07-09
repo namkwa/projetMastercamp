@@ -101,7 +101,8 @@ async function authenticate(token, res) {
 const research = async (req, res) => {
   const token = req.headers.authorization;
   const arg = req.headers.argument;
-  const verif = await authenticate(token, res);  const student = await Documents.query(
+  const verif = await authenticate(token, res);  
+  const student = await Documents.query(
     "where",
     "ts_vector",
     "@@",

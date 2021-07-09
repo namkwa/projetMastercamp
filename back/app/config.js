@@ -8,6 +8,7 @@ const opts = {
   user: "postgres",
   password: "",//AJOUTER LE MOT DE PASSE DE LA BASE DE DONNÉES
   database: "",//AJOUTER LE NOM DE LA BASE DE DONNÉES
+  charset: "utf8",
   debug: true,
   port: 5432,
 };
