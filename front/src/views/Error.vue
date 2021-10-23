@@ -5,7 +5,7 @@
         <div class="error_wrapper_content_title"><h1>Oups !</h1></div>
         <div class="error_wrapper_content_text">
           Une erreur s'est produite, la page que<br />
-          vous cherchez semble introuvable :(
+          vous cherchez semble introuvable :( pas cool
           <button
             @click="
               downloadResource('http://localhost:3000/Planning Mastercamp.ods', 'planning.ods')
